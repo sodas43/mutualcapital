@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var cors = require('cors');
+//var cors = require('cors');
 var index = require('./routes/index');
 //var flash    = require('connect-flash');
 var flash    = require('express-flash');
@@ -31,7 +31,7 @@ mongoose.connect(process.env.MONGODB_URI)
 //var routes = require('./routes/index.js');
 
 var app = express();
-app.use(cors());
+//app.use(cors());
 app.use(expressValidator());
 
 app.use(function(req, res, next) {
