@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  URL: "http://10.33.20.21:4200"
+  URL: "https://mutualcap1.herokuapp.com"
 };
