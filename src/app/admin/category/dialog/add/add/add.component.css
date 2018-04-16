@@ -1,0 +1,32 @@
+.bglabel {
+        align-content: center;
+        background-color: #3a539b;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-family: 'Lato'; 
+        /* font-weight: 300; */
+        font-size: 15%;
+        word-spacing: 4px;
+        letter-spacing: 1px;
+        color: #ffffff;
+        text-align: center;
+        box-shadow: 0px 5px 30px #6c7a89;
+    }
+
+html,
+body {
+  background-color: #fff;
+  color: #555;
+  /* font-family: 'Lato', 'Arial', sans-serif; */
+  font-weight: 300;
+  font-size: .875em;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+::ng-deep .mat-dialog-content {
+  font-size: .65em;
+}
+::ng-deep .mat-dialog {
+  width: 960px;
+}

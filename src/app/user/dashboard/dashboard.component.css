@@ -1,0 +1,222 @@
+/* #AccountHeader {
+        border-bottom:1px ;
+        position:relative;
+        padding:1em .5em
+}
+#AccountHeader h1 {
+        margin:0;
+        font-weight:normal;
+        text-transform:uppercase;
+        color:#3a5cc9
+}
+
+
+html,
+body {
+  background-color: #fff;
+  color: #555;
+  /* font-family: 'Lato', 'Arial', sans-serif; 
+  font-weight: 300;
+  font-size: 30px;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+} */
+.sticky {
+    position:absolute;
+    z-index:20;
+    font-size:.75em;
+    top:50px;
+    right:24px;
+}
+#seq {
+    border-bottom: 1px solid #e2e2e2; 
+    border-top: 1px solid #e2e2e2;
+}
+#seq1 {
+    border-right: 1px solid #e2e2e2;    
+}
+#seq2 {
+    background-color: #f4f5f7;
+    padding:0;
+    border-bottom: 1px solid #e2e2e2; 
+}
+#valseq1 {
+    border-bottom: 1px solid #e2e2e2;
+}
+table {
+    width: 100%;
+    border: 0;
+    border-collapse: collapse;
+    text-align: left;
+    margin-bottom: 1.25em;    
+}
+table tfoot tr td {
+    font-weight: normal;
+    color: #bbb;
+    font-size: 11px;
+    line-height: 1.1em;
+    padding: .5em .7272em;
+    border-top: 1px dotted #e2e2e2;
+}
+
+table thead tr th {
+    font-size: .75em;
+    font-weight: normal;
+    color: #777;
+    padding: .5em .666em;
+    line-height: 1em;
+    border-bottom: 1px solid #e2e2e2;
+    vertical-align: bottom;
+}
+
+.txnList td {
+    font-size: .75em;
+    padding: .833em .667em;
+}
+
+#CurrentValuation_portValWeb {
+    text-align: center;
+}
+
+#CurrentValuation_portValWeb .value {
+    font-size: 1.5em;
+    display: block;
+    margin-bottom: 1em;
+    color: rgba(51, 51, 51, 0.781);
+    font-weight: bold;
+}
+.WebRupee {
+    font-family: 'WebRupee';
+}
+.greyBox {
+    padding: 1.5em 1em;
+    background-color: #f4f5f7;    
+    color: #555;
+}
+
+.greyBox h2 {
+    font-size: .75em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 2em;
+    font-weight: bold;
+    color: #222;
+}
+mat-card {
+    border-right:2px solid #f7f4f4; 
+}
+.whiteframe{box-shadow:0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);}
+.txnStatus {
+        padding:.25em .5em;
+        font-size:.814em;
+        text-transform:uppercase;
+        color:#f7f7f7;
+        border-radius:.25em;
+        background-color:#3a529bce;
+        text-shadow:0 -1px 0 rgba(0,0,0,.3);
+        white-space:nowrap
+}
+.txnStatus.completed {
+    background-color: olivedrab;
+}
+
+h2.txnStatus.upcoming {
+    background-color: rgba(0, 128, 128, 0.726);
+}
+.bglabel {
+        align-content: center;
+        background-color: #3a539b;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-family: 'Lato'; 
+        /* font-weight: 300; */
+        font-size: 15%;
+        word-spacing: 4px;
+        letter-spacing: 1px;
+        color: #ffffff;
+        text-align: center;
+        box-shadow: 0px 5px 30px #6c7a89;
+}
+
+.card-header-label {
+        box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+        margin: -20px 15px 0;
+        border-radius: 3px;
+        padding: 15px;
+        background-color: #3a539b;
+        text-transform: uppercase;
+    }
+
+    mat-header-row {
+        background-color: #3a529bb6; 
+        color: #ffffff;
+        text-transform: uppercase;
+        text-align: center;
+        align-content: center;
+    }
+    
+      
+    .card [data-background-color="blue"] {
+        background: linear-gradient(60deg, #26c6da, #0570c7ee);
+        box-shadow: 0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2);
+    }
+    
+    .card [data-background-color="green"] {
+        background: linear-gradient(60deg, #66bb6a, #43a047);
+        box-shadow: 0 12px 20px -10px rgba(76, 175, 80, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(76, 175, 80, 0.2);
+    }
+    
+    .card [data-background-color="orange"] {
+        background: linear-gradient(60deg, #ff6326, #fb8c00);
+        box-shadow: 0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2);
+    }
+    
+    .card [data-background-color="red"] {
+        background: linear-gradient(60deg, #ef5350, #e53935);
+        box-shadow: 0 12px 20px -10px rgba(244, 67, 54, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(244, 67, 54, 0.2);
+    }
+
+    
+    =======================================================
+    .modal-header {
+        padding: 10px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .modal-body {
+        position: relative;
+        padding: 15px;
+    }
+    .genericNav{
+        background:#f7f4f4;
+        margin:10px auto;
+        padding:0;
+    }
+    .genericNav > li .md-caption{
+        text-transform:uppercase;
+        line-height: 1;
+    }
+    .genericNav > li .md-title {
+        line-height: 1;
+    }
+    .genericNav > li {
+        display: inline-block;
+        /* width:1%; */
+        color: #333;
+        padding: 5px 5px 2px;
+        /* border-radius: 5px;			 */
+        text-align: center;
+        /* border-right:2px solid #FFF; */
+        /* border-radius:0; */
+    }
+    .genericNav.white{
+        background:#FFF;
+        padding:10px;
+    }
+    /* .genericNav.white > li{
+        border-right:2px solid #f7f4f4; 
+    } */
+    .genericNav > li:last-child{border-right:0}
+
+    .green { color: green; font-weight: bold; }
+    .red { color: red; font-weight: bold; }

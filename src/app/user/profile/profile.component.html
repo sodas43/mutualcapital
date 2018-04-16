@@ -1,0 +1,168 @@
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('../../assets/img/intro-carousel/4.jpg'); height: 400px;"></div>
+    <div class="main main-raised">
+        <div class="profile-content">
+            <div class="container">
+
+                
+                <div class="row">
+                    <div class="col-md-12 ml-auto mr-auto">
+                      <br><br>
+                        <div class="bglabel">
+                            <h5> PROFILE </h5>                    
+                        </div>
+                        <br><br>
+                        <div class="profile" style="padding-bottom: 2em;">
+                            
+                            <div class="name">
+                                <h3 class="title">Souvik Das</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile-tabs">
+                            <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#AcDetails" role="tab" data-toggle="tab">
+                                        Account Details
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#PlDetails" role="tab" data-toggle="tab">
+                                        Personal Details
+                                    </a>
+                                </li>                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content tab-space">
+                    <div class="tab-pane active text-center gallery" id="AcDetails">
+                        <div class="row">
+                          <div class="col-lg-12 col-sm-12 columns mainColumn">
+                            <h3>Sign in details</h3>
+                            <dl class="horizontal clearfix profilePage">
+                              <dt>Email</dt>
+                              <dd>
+                                <span>jobs.souvik.das@gmail.com</span>                                    
+                              </dd>
+                              <dt>Password</dt>
+                              <dd>******** <span>  <a href="javascript:void(0)" (click)="showPwdForm=!showPwdForm" class='edit-btn'> change </a></span>
+                                <br><br>
+                                <div *ngIf='showPwdForm'class='editDiv'>
+                                    <form style='font-size:.8em'
+                                    fxLayout='column' 
+                                    fxLayoutAlign="left left" 
+                                    fxLayoutGap="10px"                                    
+                                    #f1="ngForm" (ngSubmit)="UpdatePassword(f1)">
+                                      <mat-form-field>                                        
+                                        <input type="password"
+                                        matInput placeholder="Your Password" 
+                                        ngModel name="password1" 
+                                        password1 required #pwdInput="ngModel">
+                                        <mat-error *ngIf="pwdInput.hasError('required')">Field must not be empty.</mat-error>                                        
+                                      </mat-form-field>
+                                      
+                                      <mat-form-field>                                        
+                                          <input type="password"
+                                          matInput placeholder="Confirm Password" 
+                                          ngModel name="confirmPassword1" 
+                                          password1 required #cnFmpwdInput="ngModel">
+                                          <mat-error *ngIf="cnFmpwdInput.hasError('required')">Field must not be empty.</mat-error>                                          
+                                        </mat-form-field>
+                                      
+                                      <div style="float:right">
+                                          <button type="submit" 
+                                            class="btn btn-sm btn-success"
+                                            style='font-size:.85em'                    
+                                            [disabled]="f1.invalid"         
+                                          >
+                                            <i class="material-icons">autorenew</i> Change Password 
+                                          </button> 
+                                      </div>                                      
+                                    </form>
+                                </div>
+                              </dd>
+                            </dl>
+                            
+                            <h3>Contact details</h3>
+                            <p class="hint">All transaction &amp; account related alerts or communication regarding this facility of online investment account will be sent to the following email ID and/or mobile number.</p>
+                            <dl class="horizontal clearfix profilePage">
+                              <dt>Mobile</dt>
+                                  <dd>8981840133   <a data-reveal-id="mobile-edit" href="javascript:void(0)" (click)='showphoneForm=!showphoneForm' class='edit-btn'> change </a>
+                                    <br><br>
+                                    <div *ngIf='showphoneForm' class='editDiv'>
+                                        <form style='font-size:.8em'
+                                        fxLayout='column' 
+                                        fxLayoutAlign="left left" 
+                                        fxLayoutGap="10px"                                    
+                                        #f2="ngForm" (ngSubmit)="UpdateMobile(f2)">
+                                          <mat-form-field>
+                                              <span matPrefix>+91 &nbsp;</span>                                      
+                                            <input type="tel"
+                                            matInput placeholder="Your Mobile" 
+                                            ngModel name="mob" 
+                                            password1 required #mobInput="ngModel">
+                                            <mat-error *ngIf="mobInput.hasError('required')">Field must not be empty.</mat-error>                                        
+                                          </mat-form-field>
+                                          <div style='float:inherit'>
+                                            <button type="submit" 
+                                              class="btn btn-sm btn-success"
+                                              style='font-size:.85em'                    
+                                              [disabled]="f2.invalid"         
+                                            >
+                                              <i class="material-icons">autorenew</i> Change Mobile 
+                                            </button>
+                                          </div>
+                                          </form>
+                                    </div>
+                                  </dd>
+                              <dt>Email</dt>
+                                  <dd>jobs.souvik.das@gmail.com
+                                  </dd>
+                            </dl>                                
+                          </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane text-center gallery" id="PlDetails">
+                        <div class="row">
+                          <div class="col-lg-12 col-sm-12 columns mainColumn">
+                            <h3>PAN Details</h3>
+                            <dl class="horizontal clearfix profilePage">
+                              <dt>PAN</dt>
+                              <dd>
+                                <span>APFPD4777B</span>                                    
+                              </dd>
+                              <dd>
+                                <span class="notVerified">KYC verified</span> 
+                                <span class="verified">PAN verified</span> 
+                              </dd>                              
+                            </dl>
+                            
+                            <h3>Registered Bank Account details</h3>
+                            <dl class="horizontal profilePage">
+                              <dt>Bank name</dt>
+                                <dd>HDFC BANK LTD</dd>
+                              <dt>Account number</dt>
+                                <dd>07941610044445</dd>
+                              <dt>Branch / city</dt>
+                                <dd>HINJAWADI  PUNE/PUNE</dd>
+                              <dt>IFSC</dt>
+                                <dd>HDFC0000794</dd>
+                              <dt>Payout Mechanism</dt>
+                              <dd>RTGS/NEFT TRANSFER</dd>
+                              <hr>
+                            </dl>
+                            
+                          </div>
+                        </div>
+                    </div>                    
+                </div>
+                
+            </div>
+    </div>
+  </div>
+
+  

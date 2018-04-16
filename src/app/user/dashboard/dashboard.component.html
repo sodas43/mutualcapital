@@ -1,0 +1,146 @@
+<div id="intro" class="page-header header-filter" data-parallax="true"  style=" background-image: url('../../assets/img/intro-carousel/5.jpg'); height: 400px;" >
+</div>
+<div class="main main-raised">
+    <div class="container">
+	<div class="section text-center">
+	    <div class="row">
+		    <div class="col-md-12 ml-auto mr-auto">
+                <!-- <header id="AccountHeader">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6 col-md-6 bglabel">
+                                <h2>Dashboard</h2>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-md-6 columns nopadd">
+                                <div class="button-bar" id="AccountCTAs">
+                                    <ul class="button-group">
+                                        <li>
+                                            <a data-dropdown="dropNewTransaction" 
+                                                class="button dropdown small primary"
+                                                id="trxnButton" href="#">
+                                                New transaction
+                                            </a>
+                                            <ul data-dropdown-content="" class="f-dropdown tiny" id="dropNewTransaction">
+                                                <li><a href="/transact/purchase">Purchase</a></li>
+                                                <li><a href="/transact/SIP">SIP</a></li>							
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </header> -->
+				<div class="bglabel">
+                    <h5> DASHBOARD </h5>                    
+                </div>
+                <button class="btn btn-success btn-sm sticky">
+                        <i class="material-icons">add</i>
+                        New Transaction                        
+                    </button>
+                
+                
+			    <br><br>
+			    <section id="AccountBody">
+                    <div class="row" id="seq">								
+                        <div class="col-md-8 col-lg-8 col-sm-12 columns" id="seq1">								
+                            <section id="UpcomingTxns">
+                                <h2 class="txnStatus upcoming">Upcoming transactions</h2>
+                                    <table class="txnList">	
+                                        <colgroup>
+                                            <col width="12%" class="date">
+                                            <col width="18%">
+                                            <col width="50%">
+                                            <col width="20%">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Type</th>
+                                                <th>Scheme</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>	
+                                                <tr>
+                                                    <td class="date">14 Apr</td>
+                                                    <td><span class="txnType">SIP</span></td>
+                                                    <td class="scheme">
+                                                            <a style="color:#555" href="/mutual-fund-products/equity-schemes/small-cap-micro-cap-fund/dspmc-regular-growth" target="_blank" title="Go to Small Cap Fund Regular Growth">Small Cap Fund</a>
+                                                    </td>
+                                                    <td><span class="WebRupee">Rs.&nbsp;</span> 4,000</td>
+                                                </tr>													
+                                        </tbody>
+                                    </table>
+                            </section>
+                                
+                            <section id="RecentActivity">
+                                <h2 class="txnStatus recent">Recent Transactions</h2>
+                                <table class="txnList" id="transactionList">
+                                    <colgroup>
+                                        <col width="8%" class="date">
+                                        <col width="10%">
+                                        <col width="12%">
+                                        <col width="28%">
+                                        <col width="15%">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                            <th>Type</th>
+                                            <th>Scheme</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="date">15 Mar</td>
+                                            <td><span class="txnStatus completed">Processed</span></td>
+                                            <td class="txnType">SIP</td>
+                                            <td class="scheme"><a style="color:#555" href="/mutual-fund-products/equity-schemes/ELSS-tax-saver-fund/dspts-direct-growth" target="_blank" title="Go to Tax Saver Fund Direct Growth">Tax Saver Fund</a>
+                                            </td>
+                                            <td><span class="WebRupee">Rs.</span> 2,000</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5">
+                                                <a href="/account/investor-transactions?q2=ALL"
+                                                   style='color: #005eb8; text-decoration: none; line-height: inherit;'
+                                                >
+                                                    See more recent transactions »
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>		
+                            </section>
+                                
+                        </div>						
+                            
+                        <aside id="seq2" class="col-md-4 col-lg-4 col-sm-12 columns">
+                            <div id="RightPartial">
+                                <div id="valseq1" class="small-12 portValWeb">
+                                    <section id="CurrentValuation_portValWeb" class="greyBox">
+                                        <h2>Your Portfolio's Value<p><small>as on 10 Apr, 2018</small></p></h2>
+                                            <span class="value"><i class="fas fa-rupee-sign"></i> 1.65 lakhs <input type="hidden" name="currentaum_portValWeb" id="currentaum_portValWeb" value="164,591.328"></span>										
+                                    </section>
+                                </div>
+                                <section id="SchemeTypeAllocation" class="greyBox">
+                                    <h2>Fund Type Break-up</h2>
+                                    <canvas id="canvas" class="chartjs" width="30" height="30"
+                                     style="display: block; width: 30px; height: 30px;">
+                                    </canvas>                                      
+                                </section>
+                            </div>							
+                        </aside>
+                    </div>	
+                </section>
+            </div>
+            
+	    </div>
+        </div>
+    </div>
+</div>
+
+
+

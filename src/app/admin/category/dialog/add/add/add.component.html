@@ -1,0 +1,31 @@
+<div class="container mat-dialog-title">
+    <div class="bglabel">
+        <h5> ADD CATEGORY </h5>                        
+    </div>
+    <br>
+    <div mat-dialog-content>
+            <form            
+            fxLayout='column' 
+            fxLayoutAlign="center center" 
+            fxLayoutGap="10px"
+            #f1="ngForm" (ngSubmit)="onSubmit(f1)">
+              <mat-form-field>                               
+                <input matInput class='cust' placeholder="Category Name" ngModel name="categoryName" required>                               
+              </mat-form-field>                           
+              <mat-form-field>
+              <input matInput placeholder="Category Description" ngModel name="categoryDescription" required>                              
+              </mat-form-field>
+              
+              <div mat-dialog-actions style="float:right">
+                  <button type="submit" 
+                    class="btn btn-round btn-success"                    
+                    [disabled]="f1.invalid"
+                    
+                  >
+                    <i class="material-icons">add</i> C R E A T E 
+                  </button> 
+              </div>
+              
+            </form>
+    </div> 
+</div>

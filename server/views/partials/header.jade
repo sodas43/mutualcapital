@@ -1,0 +1,13 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container
+    a.navbar-brand(href=process.env.MAINURL+':'+process.env.PORT) Mutual Capital
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarsExampleDefault.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item
+          a.nav-link(routerlinkactive='nav-link active', href=process.env.MAINURL+':'+process.env.PORT+'/#about') About Us
+        li.nav-item
+          a.nav-link(routerlinkactive='nav-link active', href=process.env.MAINURL+':'+process.env.PORT+'/#services') Services
+        li.nav-item
+          a.nav-link(routerlinkactive='nav-link active', href=process.env.MAINURL+':'+process.env.PORT+'/#testimonial') Testimonial

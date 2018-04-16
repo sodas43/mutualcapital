@@ -1,0 +1,117 @@
+/* table.boldData {
+        margin-top: 1em;
+        border: 0;
+    } */
+table.boldData {
+  border-top: 1px solid #d2d2d2;
+  border-bottom: 1px solid #d2d2d2;  
+  position: relative;
+  
+}
+#summary {
+  background-color: #eaf3fb;
+  border-radius: .5em;
+  padding: 1em;
+}
+table {
+  width: 100%;
+  border: 0;
+  border-collapse: collapse;
+  text-align: center;
+  margin-bottom: 1.25em;
+  font-size: .85em;
+}
+table thead, table tfoot {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-weight: bold;
+  font-size:.75em;
+  color: #6c7a89;
+}
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+table.holdingSummary thead tr th {
+  border-left: 1px solid #e9e9e9;
+  padding-top: 0;
+  vertical-align: middle;
+  background: transparent;
+  font-size: 11px;
+  color: #777;
+  text-align: center;
+  border-radius: 1em;
+}
+
+table.holdingSummary thead tr:last-child, table.holdingSummary tbody tr:last-child {
+  border-right: 1px solid #e9e9e9;
+}
+
+table.holdingSummary tbody tr td {
+  border: 0;
+  border-left: 1px solid #e9e9e9;
+  padding-bottom: .5em;
+  background: transparent;
+  text-align: center;
+  font-weight:500;
+  font-size:0.9em;
+}
+
+.column, .columns {
+  padding-left: .9375em;
+  padding-right: .9375em;
+  width: 100%;
+  /* float: left; */
+  position: relative;
+}
+h3 {
+  font-weight: bold;
+    font-style: normal;
+    color: #222;
+    text-rendering: optimizeLegibility;
+    background-color: #e4e4e4;
+    padding: 1em;
+    border-radius: .5em;
+    line-height: 1.2125em;
+    font-size: 1em;
+}
+
+.positive {
+  /* padding-left: 18px; */
+  color: #12af01;
+  padding:0;
+}
+
+.negative { 
+  padding:0; 
+  color: #f15337;
+}
+
+.neutral { 
+  padding:0; 
+  color: #777;
+}
+
+.bglabel {
+  align-content: center;
+  background-color: #4183d7;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-family: 'Lato'; 
+  /* font-weight: 300; */
+  font-size: 15%;
+  word-spacing: 4px;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0px 5px 30px #6c7a89;
+}

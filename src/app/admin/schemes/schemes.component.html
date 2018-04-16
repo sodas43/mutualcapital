@@ -1,0 +1,74 @@
+<div id="intro" class="page-header header-filter" data-parallax="true"  style=" background-image: url('../../assets/img/intro-carousel/5.jpg'); height: 400px;" >  
+</div>
+<div class="main main-raised">
+    <div class="container">
+        <div class="section text-center">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <button (click)="OnAddClick()" 
+                        class="btn btn-round btn-fab btn-lg sticky"                    
+                        style="color:#fff; background-color: #F64747;"
+                        data-toggle="tooltip" data-placement="left" title="Add a New Category"
+                    >
+                        <i class="material-icons">add</i>
+                    </button>  
+                    <br>
+                    <div>
+                        <div class="form">
+                            <mat-form-field floatPlaceholder="never" color="accent">
+                                <input matInput (keyup)="applySchemeFilter($event.target.value)" #filter placeholder="Search">
+                            </mat-form-field>
+                        </div>
+                       
+                        <mat-table #table [dataSource]="dataSource" matSort>
+                            <!-- Title Column -->
+                            <ng-container matColumnDef="schemeName">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                                <mat-cell *matCellDef="let row">{{ row.schemeName }}</mat-cell>
+                            </ng-container>
+                        
+                            <!-- State Column -->
+                            <ng-container matColumnDef="schemeDescription">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+                                <mat-cell *matCellDef="let row">{{ row.schemeDescription }}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="schemeNAV">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header> NAV </mat-header-cell>
+                              <mat-cell *matCellDef="let row">{{ row.schemeNAV }}</mat-cell>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="subCategory">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header> Sub Category </mat-header-cell>
+                              <mat-cell *matCellDef="let row">{{ row.subCategory }}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="categoryName">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header> Category name </mat-header-cell>
+                              <mat-cell *matCellDef="let row">{{ row.categoryName }}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="actions">
+                                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                                <mat-cell *matCellDef="let row" >                                    
+                                            <i class="material-icons" style="color: #3a539b" (click)="OnEditClick(row._id, row.categoryName, row.categoryDescription)" style="cursor: pointer">mode edit</i>
+                                            <i class="material-icons" style="color: #3a539b" (click)="OnDeleteClick(row._id)" style="cursor: pointer">delete</i>
+                                </mat-cell>
+                            </ng-container> 
+                            
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                            
+                 </mat-table>
+                 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+                    </div>
+                    
+                    
+                    
+            </div>
+        </div>
+    </div>  
+</div>
+

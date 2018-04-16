@@ -1,0 +1,54 @@
+<div class="container mat-dialog-title">
+  <div class="bglabel">
+      <h5> ADD SCHEME </h5>                        
+  </div>
+  <br>
+  <div mat-dialog-content>
+          <form            
+          fxLayout='column' 
+          fxLayoutAlign="center center" 
+          fxLayoutGap="10px"
+          #f1="ngForm" (ngSubmit)="onSubmit(f1)">
+          <mat-form-field>
+            <mat-select placeholder="category Name" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor='let categoryName of categoryNames'>
+                {{categoryName}}
+              </mat-option>
+            </mat-select>            
+          </mat-form-field>
+          <mat-divider></mat-divider>
+          <!-- <mat-form-field>
+            <mat-select placeholder="category Name" required>
+              <mat-option>-</mat-option>
+              <mat-option *ngFor="let subCategoryName of SubcategoryNames'">
+                {{SubCategoryName}}
+              </mat-option>
+            </mat-select>            
+          </mat-form-field> -->
+            <mat-form-field>                               
+              <input matInput placeholder="Scheme Name" ngModel name="schemeName" required>                               
+            </mat-form-field>                           
+            <mat-form-field>
+            <input matInput placeholder="Scheme Description" ngModel name="schemeDescription" required>                              
+            </mat-form-field>
+            <mat-form-field>
+              <input type='number' matInput placeholder="Scheme NAV" ngModel name="schemeNAV" required>                              
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Sub Category" ngModel name="subCategory" required>                              
+            </mat-form-field>
+            
+            <div mat-dialog-actions style="float:right">
+                <button type="submit" 
+                  class="btn btn-round btn-success"                    
+                  [disabled]="f1.invalid"
+                  
+                >
+                  <i class="material-icons">add</i> C R E A T E 
+                </button> 
+            </div>
+            
+          </form>
+  </div> 
+</div>

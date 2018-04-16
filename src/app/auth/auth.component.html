@@ -1,0 +1,157 @@
+<section>
+    <!-- <div class="page-header header-filter bgimg" data-parallax="true">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-10 ml-auto mr-auto"> -->
+    <div id="intro" class="page-header header-filter" data-parallax="true"  style=" background-image: url('../../assets/img/intro-carousel/5.jpg'); height: 400px;" >
+    </div>
+    <div class="main main-raised">
+      <div class="container">
+        <div class="section text-center">
+          <div class="row align-items-center">
+
+              <!-- class="card card-signup" style="border-radius:8px" -->
+                  <div class="card card-signup">
+                      
+ 
+                      
+                          <section>
+                              <div class="bglabel">
+                                <h5>{{ title }}</h5>
+                              </div>
+                              <br>
+                             
+                              <div id="social" class="sociallogin">
+                                <div class="col-md-12">
+                                  <ul class="social-network social-circle">
+                                      <!-- <li><a href="/auth/facebook" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li> -->
+                                      <li><a href="/auth/google" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                                      <li><a href='/auth/twitter' class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                      
+                                       <!-- <li><a href="/auth/linkedin" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>  -->
+                                  </ul>				
+                                </div>
+                                <br>
+                                <div class="division">
+                                  <div class="line l"></div>
+                                  <div class="OrCircle"  >
+                                    <span> O R </span>
+                                  </div>
+                                  <br><br>
+                                  <div class="line r"></div>
+                                </div>
+                              </div>
+                              
+                              <div id="login-form" *ngIf="showLogin">
+                                <form 
+                                fxLayout='column' 
+                                fxLayoutAlign="center center" 
+                                fxLayoutGap="10px"
+                                #f1="ngForm" (ngSubmit)="onLoginSubmit(f1)">
+                                 <mat-form-field>
+                                   <!-- <input type='email'  -->
+                                   <input 
+                                    matInput placeholder="Your email" 
+                                    ngModel name="email" 
+                                    email required #emailInput="ngModel">
+                                   <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty.</mat-error>
+                                   <mat-error *ngIf="!emailInput.hasError('required')">E-Mail is invalid.</mat-error>
+                                 </mat-form-field>
+                               
+                                 <mat-form-field>
+                                  <input matInput placeholder="your password" 
+                                  [type]="hide ? 'password' : 'text'"
+                                  ngModel name="password" 
+                                  required #pwInput="ngModel">
+                                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>                                  
+                                 </mat-form-field>
+                                 
+                                 <button type="submit" mat-raised-button color="primary" [disabled]="f1.invalid">Log In</button>
+                               </form>
+
+                               <div class="footerLogRegister">
+                                  <a class='btn btn-link' routerLink="/signup" (click)="toggle()">Create an Account</a>
+                                  <br>
+                                  <button class='btn btn-link' routerLink="/signup" (click)="OnForgotPasswordClick()" >Forgot Password?</button>
+                              </div>
+                              </div>
+
+                              <div id="register-form" *ngIf="!showLogin">
+                                <form 
+                                fxLayout='column' 
+                                fxLayoutAlign="center center" 
+                                fxLayoutGap="10px"
+                                #f="ngForm" (ngSubmit)="onSignupSubmit(f)">
+                                <mat-form-field>
+                                  <!-- <input type='email'  -->
+                                  <input  
+                                    matInput placeholder="Your email" 
+                                    ngModel name="email" 
+                                    email required #emailInput="ngModel">
+                                  <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty.</mat-error>
+                                  <mat-error *ngIf="!emailInput.hasError('required')">E-Mail is invalid.</mat-error>
+                                </mat-form-field>
+                              
+                                <mat-form-field hintLabel="Should be at least 8 characters long">
+                                  <input matInput placeholder="your password" 
+                                  [type]="hide ? 'password' : 'text'"
+                                  ngModel name="password" 
+                                  required minlength="8" #pwInput="ngModel">
+                                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                                  <mat-hint align="end">{{ pwInput.value?.length }} /8</mat-hint>
+                                  <mat-error>Has to be at least 8 characters long.</mat-error>                                  
+                                </mat-form-field>
+                                <!--<mat-form-field>
+                                   <input matInput placeholder="Your birthdate" [matDatepicker]="picker" [max]="maxDate" ngModel name="birthdate" required>
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker> 
+                                </mat-form-field>-->
+                                <mat-form-field>
+                                  <input matInput placeholder="First Name" ngModel name="firstName" required>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input matInput placeholder="Last Name" ngModel name="lastName" required>
+                                </mat-form-field>
+                                <mat-form-field>
+                                  <input type="tel" matInput placeholder="Phone" ngModel name="mobile" required>
+                              </mat-form-field>
+
+                              <!-- <ng-template [ngIf]="isAdmin$">
+                                  <mat-slide-toggle ngModel name="isAdmin" color="primary"> Is Admin </mat-slide-toggle>
+                              </ng-template>                                 -->
+                              
+                                <mat-checkbox ngModel name="agree" required color="primary">Agree to Terms and Conditions.</mat-checkbox>
+                                <button type="submit"
+                                  mat-raised-button color="primary" 
+                                  [disabled]="f.invalid">
+                                  Get Started
+                                </button>
+                                <br>
+                                                                
+                              </form>
+                              <div class="footerLogRegister">
+                                Already have an account? <a class='btn btn-link' routerLink="/signup" (click)="toggle()">Log In</a>
+                              </div>                              
+                              </div>
+                              
+                            </section>
+                                  
+
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</section>
+
+
+
+        
+   
+        
+   
+
+
+
+
+

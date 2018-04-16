@@ -1,0 +1,34 @@
+<div class="container mat-dialog-title">
+    <div class="bglabel">
+        <h5> EDIT CATEGORY </h5>                        
+    </div>
+    <br>
+    <div mat-dialog-content>
+            <form            
+            fxLayout='column' 
+            fxLayoutAlign="center center" 
+            fxLayoutGap="10px"
+            #f1="ngForm" (ngSubmit)="onSubmit(f1)">
+              <mat-form-field>                               
+                <input matInput placeholder="Category Name" [(ngModel)]='data.category.categoryName' name="categoryName" required>                               
+              </mat-form-field>                           
+              <mat-form-field>
+              <input matInput placeholder="Category Description" [(ngModel)]='data.category.categoryDescription' name="categoryDescription" required>                              
+              </mat-form-field>
+              
+              <div mat-dialog-actions style="float: right">
+                  <button  class="btn btn-round" (click)="onNoClick()" tabindex="-1">
+                      <i class="material-icons">cancel</i>  Cancel
+                  </button> 
+                  <button type="submit" 
+                    class="btn btn-round btn-success"                    
+                    [disabled]="f1.invalid"               
+                  >
+                    <i class="material-icons">done</i>  Update
+                  </button>
+                  
+              </div>
+              
+            </form>
+    </div> 
+</div>

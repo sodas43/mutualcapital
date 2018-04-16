@@ -1,0 +1,72 @@
+<div id="intro" class="page-header header-filter" data-parallax="true"  style=" background-image: url('../../assets/img/intro-carousel/5.jpg'); height: 400px;" >
+  <!-- <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              <h3 class="title" style="font-weight:300; text-transform:uppercase"><br><br>15 years of Indian experience together with $2.5 trillion of global expertise.<br><br></h3>
+              <h4 class="title" style="font-weight:300">Build your finantial future upon our rock solid fundation.<br><br></h4>
+              <h3 style="text-transform:uppercase">Welcome to Mutual Capital.</h3>
+              <br>
+              <a href="#about" target="_blank" class="btn btn-danger btn-raised btn-lg">
+                  <i class="fa fa-play"></i> Show more
+              </a>
+          </div>
+      </div>
+  </div> -->
+</div>
+<div class="main main-raised">
+    <div class="container">
+        <div class="section text-center">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <button (click)="OnAddClick()" 
+                        class="btn btn-round btn-fab btn-lg sticky"                    
+                        style="color:#fff; background-color: #F64747;"
+                        data-toggle="tooltip" data-placement="left" title="Add a New Category"
+                    >
+                        <i class="material-icons">add</i>
+                    </button>  
+                    <br>
+                    <div>
+                        <div class="form">
+                            <mat-form-field floatPlaceholder="never" color="accent">
+                                <input matInput (keyup)="applyFilter($event.target.value)" #filter placeholder="Search">
+                            </mat-form-field>
+                        </div>
+                       
+                        <mat-table #table [dataSource]="dataSource" matSort>
+                            <!-- Title Column -->
+                            <ng-container matColumnDef="categoryName">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                                <mat-cell *matCellDef="let row">{{ row.categoryName }}</mat-cell>
+                            </ng-container>
+                        
+                            <!-- State Column -->
+                            <ng-container matColumnDef="categoryDescription">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+                                <mat-cell *matCellDef="let row">{{ row.categoryDescription }}</mat-cell>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="actions">
+                                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                                <mat-cell *matCellDef="let row" >                                    
+                                            <i class="material-icons" style="color: #3a539b" (click)="OnEditClick(row._id, row.categoryName, row.categoryDescription)" style="cursor: pointer">mode edit</i>
+                                            <i class="material-icons" style="color: #3a539b" (click)="OnDeleteClick(row._id)" style="cursor: pointer">delete</i>
+                                </mat-cell>
+                            </ng-container> 
+                            
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                            
+                 </mat-table>
+                 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+                    </div>
+                    
+                    
+                    
+            </div>
+        </div>
+    </div>  
+</div>
+
