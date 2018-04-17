@@ -68,6 +68,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+app.all('*', (req, res) => {
+  res.status(200).sendfile(__dirname+'../dist/index.html');
+});
 // routes ======================================================================
 var users = require('./routes/users');
 app.use('/', users);
