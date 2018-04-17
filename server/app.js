@@ -69,7 +69,7 @@ app.use(passport.session());
 app.use(flash());
 
 app.all('*', (req, res) => {
-  res.status(200).sendfile(path.join(__dirname+'../dist/index.html'));
+  res.status(200).sendfile(path.join(__dirname+'/../dist/index.html'));
 });
 // routes ======================================================================
 var users = require('./routes/users');
