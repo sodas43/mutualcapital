@@ -1,9 +1,9 @@
 var ids = {
-//   'facebook' : {
-// 		'clientID' 		: 'your-secret-clientID-here', // your App ID
-// 		'clientSecret' 	: 'your-client-secret-here', // your App Secret
-// 		'callbackURL' 	: 'http://localhost:8080/auth/facebook/callback'
-// 	},
+  'facebook' : {
+		'clientID' 		: 'your-secret-clientID-here', // your App ID
+		'clientSecret' 	: 'your-client-secret-here', // your App Secret
+		'callbackURL' 	: 'http://localhost:8080/auth/facebook/callback'
+	},
 
 	'twitter' : {
 		'consumerKey' 		: 'xaHgDlC54cC6DrNBkTzaObi1f',
