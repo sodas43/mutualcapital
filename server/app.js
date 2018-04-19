@@ -68,9 +68,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-// app.get('*', (req, res) => {
-//   res.status(200).sendfile(path.join(__dirname+'/../dist/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.status(200).sendfile(path.join(__dirname+'/../dist/index.html'));
+});
 
 // routes ======================================================================
 var users = require('./routes/users');
