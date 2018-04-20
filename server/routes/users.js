@@ -243,7 +243,7 @@ router.get('/reset/password/:token', function(req, res, next) {
 		// handle the callback after twitter has authenticated the user
 		router.get('/auth/twitter/callback',
 			passport.authenticate('twitter', {
-				successRedirect : '/',
+				successRedirect : '/dashboard',
 				failureRedirect : '/'
 			}));
 
@@ -256,7 +256,7 @@ router.get('/reset/password/:token', function(req, res, next) {
 		// the callback after google has authenticated the user
 		router.get('/auth/google/callback',
 		passport.authenticate('google', {
-			successRedirect : '/',
+			successRedirect : '/dashboard',
 			failureRedirect : '/'
 		}));
 		// router.get('/auth/google/callback',
