@@ -97,8 +97,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.get('*', (req, res) => {
-  res.sendfile(path.join(__dirname+'/../dist/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendfile(path.join(__dirname+'/../dist/index.html'));
+// });
 
 module.exports = app;
