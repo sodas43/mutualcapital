@@ -6,6 +6,7 @@ var crypto   = require('crypto');
 var User     = require('../models/user');
 var nodemailer = require('nodemailer');
 var configAuth = require('../auth/_config');
+var path = require('path');
 
 
 //module.exports = function(app, passport) {
@@ -289,6 +290,9 @@ function isLoggedIn(req, res, next) {
 	res.redirect('/');
 }
 
+routes.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname + '/../../dist/index.html'));
+});
 
 
 module.exports = router;
