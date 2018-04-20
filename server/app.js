@@ -68,10 +68,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-// app.get('*', (req, res) => {
-//   res.status(200).sendfile(path.join(__dirname+'/../dist/index.html'));
-// });
-
 // routes ======================================================================
 var users = require('./routes/users');
 app.use('/', users);
@@ -101,6 +97,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
+app.get('*', (req, res) => {
+  res.sendfile(path.join(__dirname+'/../dist/index.html'));
+});
 
 module.exports = app;
