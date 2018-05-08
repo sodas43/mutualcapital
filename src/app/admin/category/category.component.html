@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 <div id="intro" class="page-header header-filter" data-parallax="true"  style=" background-image: url('../../assets/img/intro-carousel/5.jpg'); height: 400px;" >
   <!-- <div class="container">
       <div class="row">
@@ -48,9 +49,32 @@
                             
                             <ng-container matColumnDef="actions">
                                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                                <mat-cell *matCellDef="let row" >                                    
-                                            <i class="material-icons" style="color: #3a539b" (click)="OnEditClick(row._id, row.categoryName, row.categoryDescription)" style="cursor: pointer">mode edit</i>
-                                            <i class="material-icons" style="color: #3a539b" (click)="OnDeleteClick(row._id)" style="cursor: pointer">delete</i>
+                                <mat-cell *matCellDef="let row" >
+                                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                  </button>
+                                  <mat-menu #menu="matMenu">                                      
+                                      <button mat-menu-item class="btn-link"
+                                      (click)="OnEditClick(row._id, row.categoryName, row.categoryDescription)"
+                                      >
+                                          <mat-icon>mode_edit</mat-icon>
+                                          <span>Edit</span>
+                                      </button>
+                                      <button mat-menu-item class="btn-link"
+                                      (click)="OnDeleteClick(row._id, row.categoryName)"
+                                      >
+                                          <mat-icon>delete</mat-icon>
+                                          <span>Delete</span>
+                                      </button>
+                                      <!-- <i class="material-icons"
+                                         style="color: #3a539b; cursor:pointer" 
+                                         (click)="OnEditClick(row._id, row.categoryName, row.categoryDescription)"
+                                         mat-menu-item
+                                      >mode edit</i> 
+                                      <i mat-menu-item class="material-icons" style="color: #3a539b" (click)="OnDeleteClick(row._id)" style="cursor: pointer">delete</i>
+                                      -->
+                                  </mat-menu>                                    
+                                            
                                 </mat-cell>
                             </ng-container> 
                             

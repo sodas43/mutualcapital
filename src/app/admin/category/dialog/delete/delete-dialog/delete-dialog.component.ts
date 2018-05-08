@@ -19,7 +19,7 @@ export class DeleteDialogComponent implements OnInit {
   }
 
   confirmDelete() {
-    this.categoryService.DeleteCategory(this.data.id)
+    this.categoryService.DeleteCategory(this.data.category.id)
           .subscribe(
               (res) => {
                 console.log('Service success');                

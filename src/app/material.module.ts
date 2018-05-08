@@ -17,7 +17,10 @@ import {
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
-    MatSelectModule
+    MatMenuModule,
+    MatSelectModule,
+    MatStepperModule,
+    MatAutocompleteModule
     
 } from '@angular/material';
 
@@ -39,7 +42,10 @@ import {
         MatPaginatorModule,
         MatSortModule,
         MatDialogModule,
-        MatSelectModule
+        MatMenuModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        MatStepperModule
         
     ],
     exports: [
@@ -59,7 +65,10 @@ import {
         MatPaginatorModule,
         MatSortModule,
         MatDialogModule,
-        MatSelectModule
+        MatMenuModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        MatStepperModule
         
     ],
 })

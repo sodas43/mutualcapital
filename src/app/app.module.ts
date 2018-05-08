@@ -10,7 +10,7 @@ import { MaterialModule } from './material.module';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app.routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BaseComponent } from './base/base.component';
 import { CategoryComponent } from './admin/category/category.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
@@ -34,6 +34,8 @@ import { AddSchemeComponent } from './admin/schemes/dialog/add/add.component';
 import { UserComponent } from './admin/user/user.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { PortfolioComponent } from './user/portfolio/portfolio.component';
+import { UserService } from './shared/serrvices/user.service';
+import { PurchaseComponent } from './user/purchase/purchase.component';
 //import { CustomToastOption } from './shared/components/custom-toast-option';
 
 
@@ -58,7 +60,8 @@ import { PortfolioComponent } from './user/portfolio/portfolio.component';
     DeleteComponent,
     UserComponent,
     ProfileComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    PurchaseComponent
   ],
   entryComponents: [
     AddComponent,
@@ -78,6 +81,7 @@ import { PortfolioComponent } from './user/portfolio/portfolio.component';
     FormsModule,
     HttpModule,
     HttpClientModule,
+    ReactiveFormsModule,
     ToastModule.forRoot()
     
    
@@ -87,6 +91,7 @@ import { PortfolioComponent } from './user/portfolio/portfolio.component';
     CategoryService,
     AuthGuardService,
     SchemeService,
+    UserService,
     //{ provide: ToastOptions, useClass: CustomToastOption }
   ],
   bootstrap: [AppComponent]

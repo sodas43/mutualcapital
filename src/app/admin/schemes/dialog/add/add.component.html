@@ -4,51 +4,81 @@
   </div>
   <br>
   <div mat-dialog-content>
-          <form            
-          fxLayout='column' 
-          fxLayoutAlign="center center" 
-          fxLayoutGap="10px"
-          #f1="ngForm" (ngSubmit)="onSubmit(f1)">
-          <mat-form-field>
-            <mat-select placeholder="category Name" required>
-              <mat-option>--</mat-option>
-              <mat-option *ngFor='let categoryName of categoryNames'>
-                {{categoryName}}
-              </mat-option>
-            </mat-select>            
-          </mat-form-field>
-          <mat-divider></mat-divider>
-          <!-- <mat-form-field>
-            <mat-select placeholder="category Name" required>
-              <mat-option>-</mat-option>
-              <mat-option *ngFor="let subCategoryName of SubcategoryNames'">
-                {{SubCategoryName}}
-              </mat-option>
-            </mat-select>            
-          </mat-form-field> -->
-            <mat-form-field>                               
-              <input matInput placeholder="Scheme Name" ngModel name="schemeName" required>                               
-            </mat-form-field>                           
-            <mat-form-field>
-            <input matInput placeholder="Scheme Description" ngModel name="schemeDescription" required>                              
-            </mat-form-field>
-            <mat-form-field>
-              <input type='number' matInput placeholder="Scheme NAV" ngModel name="schemeNAV" required>                              
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Sub Category" ngModel name="subCategory" required>                              
-            </mat-form-field>
-            
-            <div mat-dialog-actions style="float:right">
-                <button type="submit" 
-                  class="btn btn-round btn-success"                    
-                  [disabled]="f1.invalid"
-                  
-                >
-                  <i class="material-icons">add</i> C R E A T E 
-                </button> 
-            </div>
-            
-          </form>
+    <form            
+      fxLayout='column' 
+      fxLayoutAlign="center center" 
+      fxLayoutGap="10px"
+      #f1="ngForm" (ngSubmit)="onSubmit(f1)">
+        <mat-form-field>
+          <mat-select placeholder="category Name" ngModel name="categoryName" required (change)='onChange($event)'>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor='let categoryName of categoryNames' [value]='categoryName' 
+            >
+              {{categoryName}}
+            </mat-option>
+          </mat-select>            
+        </mat-form-field>
+    
+        <mat-form-field>
+          <mat-select placeholder="Sub category Name" ngModel name="subCategoryName" required [disabled]='isSubCategoryEmpty'>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor='let subCategoryName of subCategoryNames' [value]='subCategoryName'>
+              {{ subCategoryName }}
+            </mat-option>
+          </mat-select>            
+        </mat-form-field>
+          
+    
+        <mat-form-field>                               
+          <input matInput placeholder="Type Scheme Name ..." ngModel name="schemeName" 
+           list="schemeNames" required (blur)="fillSchemeDetails($event)">                               
+          <datalist id="schemeNames">
+            <option *ngFor="let scheme of schemes" [value]="scheme">
+              {{ scheme }}
+            </option>
+          </datalist>         
+        </mat-form-field>
+
+        <mat-form-field>                               
+          <input type='text' matInput placeholder="Scheme Code" ngModel name="schemeCode" [value]="code" readonly="readonly">                               
+        </mat-form-field>
+    
+        <mat-form-field>
+          <mat-select placeholder="Scheme type" required ngModel name="schemeType">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor='let schemeType of schemeTypes' [value]='schemeType.value'>
+              {{ schemeType.value }}
+            </mat-option>
+          </mat-select>            
+        </mat-form-field>
+    
+        <mat-form-field>
+          <input type='number' matInput placeholder="Scheme NAV" ngModel name="schemeNAV" [value]="NAV" readonly="readonly">
+          <mat-hint align="start"><strong>Today's NAV</strong></mat-hint>
+        </mat-form-field>
+       
+        <mat-form-field>
+          <input type='number' matInput placeholder="1 year Return (%)" ngModel name="oneYrRet" [value]="oneYrRet" readonly="readonly">          
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type='number' matInput placeholder="3 year Return (%)" ngModel name="threeYrRet" [value]="threeYrRet" readonly="readonly">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type='number' matInput placeholder="5 year Return (%)" ngModel name="fiveYrRet" [value]="fiveYrRet" readonly="readonly">
+        </mat-form-field>
+        
+        <div mat-dialog-actions style="float:right">
+            <button type="submit" 
+              class="btn btn-round btn-success"                    
+              [disabled]="f1.invalid"
+              
+            >
+              <i class="material-icons">add</i> C R E A T E 
+            </button> 
+        </div>
+      
+    </form>
   </div> 
 </div>

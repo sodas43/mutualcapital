@@ -48,16 +48,27 @@ var CategoryDbApi = {
                         callback(null, _clone(categoryNames));
                 });		
         },
-      
+
+        getAllSubCategoryNamesByCategory: function(category, callback) {
+                //console.log("getAllBooks API");
+                //console.log(JSON.stringify(books));
+                console.log("category : "+category);
+                Category.find({categoryName: category}, 'subCategories', (err, subCategoryNames) => {
+                        if(err)	console.log("Error :: " + err);
+                        console.log("getAllSubCategoryNamesByCategory : "+subCategoryNames);
+                        callback(null, _clone(subCategoryNames));
+                });		
+        },
+
         updateCategoryById: function(id, body, callback) {
-                //console.log("updateBookById: id = " + id);
-                Category.findByIdAndUpdate(id, {
+            //console.log("updateBookById: id = " + id);
+            Category.findByIdAndUpdate(id, {
                         categoryName: body.categoryName,
                         categoryDescription: body.categoryDescription
                 }, (err, categoryToUpdate) => {
                         if(err)	console.log("Err :: "+ err);
                         callback (null, _clone(categoryToUpdate));
-                });			
+            });			
         },
       
         deleteCategoryById: function(id, callback) {

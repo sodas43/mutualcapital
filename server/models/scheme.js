@@ -11,12 +11,15 @@ var SchemaTypes = mongoose.Schema.Types;
 
 var schemeSchema = mongoose.Schema({
         schemeName        : String,
-        schemeDescription : String,
-        // schemeNAV         : mongoose.Schema.Types.Double,
+        schemeCode        : Number,        
         schemeNAV         : Number,
         subCategory       : String,
         // categoryID        : { type: mongoose.Schema.Types.ObjectId, ref: 'Category' }
-        categoryName      : { type: mongoose.Schema.Types.String, ref: 'Category' }
+        categoryName      : { type: mongoose.Schema.Types.String, ref: 'Category' },
+        schemeType        : String,
+        oneYrRet          : Number,
+        threeYrRet        : Number,
+        fiveYrRet         : Number
 },
 { collection: 'Scheme' }
 );

@@ -1,0 +1,76 @@
+mat-form-field {
+    width: 300px;
+}
+
+mat-card {
+    margin-bottom: 5 px;
+}
+
+.bgimg {
+    background-image: url('../../../assets/img/intro-carousel/3.jpg');
+    background-size: 400px;
+    background-position: top center;
+} 
+.bglabel {
+    width: 100%;
+    align-content: center;
+    background-color: #3a539b;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    text-transform: uppercase;
+    font-family: 'Lato'; 
+    /* font-weight: 300; */
+    font-size: 100%;
+    word-spacing: 4px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0px 5px 30px #6c7a89;
+}
+
+mat-row:nth-child(even){
+    background-color: #e2e2e2;
+    }
+
+mat-header-row {
+    background-color: rgb(2, 30, 72); 
+    color: #ffffff;
+    text-transform: uppercase;
+    text-align: center;
+    align-content: center;
+}
+
+mat-header-cell {
+    /* background-color: #3a539b;  */
+    color: #ffffff;
+    text-transform: uppercase;
+
+    display:flex;
+    justify-content:flex-end;
+}
+/* mat-row:hover {
+    box-shadow: 0px 5px 30px #6c7a89;
+    background-color: #3a539b; 
+    color: #fff;
+} */
+mat-cell {
+    display:flex;
+    justify-content:flex-end;
+}
+
+
+.sticky {
+    position:absolute;
+    z-index:20;
+    font-size:30px;
+    top:100px;
+    left:24px;
+    transform:scale(.88,.88);
+}
+
+mat-table {
+    min-width: 100%;
+    border-collapse: collapse;
+
+}

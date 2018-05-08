@@ -11,14 +11,28 @@ var flash    = require('express-flash');
 var crypto = require('crypto');
 var async = require('async');
 var expressValidator = require('express-validator');
-//require('dotenv').config();
+var schedule = require('node-schedule');
+const https = require('https');
+var fs = require('fs');
+var Scheme = require('./models/scheme');
+
+
 
 var passport = require('passport');
 var session = require('express-session');
 
-//var configDB = require('./auth/database');
-var mongoose = require('mongoose');
+var app = express();
+//app.use(cors());
+app.use(expressValidator());
 
+if (app.get('env') === 'development') {
+  console.log("development mode -- need dotenv module");
+  require('dotenv').config();
+}
+
+//DATABASE
+var mongoose = require('mongoose');
+console.log(process.env.MONGODB_URI);
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI)
   .then(function(db) {
@@ -26,13 +40,6 @@ mongoose.connect(process.env.MONGODB_URI)
   }, function(err) {
     console.log("Error in connecting database :: " + err);
   });
-
-// *** routes *** //
-//var routes = require('./routes/index.js');
-
-var app = express();
-//app.use(cors());
-app.use(expressValidator());
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -67,6 +74,28 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+//GET NAV ========================
+
+var rule = new schedule.RecurrenceRule();
+rule.hour=14;
+rule.minute=28;
+rule.second=0;
+
+
+var readAMFIFileDaily = schedule.scheduleJob(rule, function() {
+  
+  const file = fs.createWriteStream("file.txt");
+  https.get("https://www.amfiindia.com/spages/NAVAll.txt", res => {
+    res.pipe(file);
+  });
+
+  
+  Scheme.remove({}, function (err) {
+    if (err) console.log("ERROR :: "+ err);
+  });
+});
+
 
 // routes ======================================================================
 var users = require('./routes/users');

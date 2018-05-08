@@ -27,12 +27,7 @@
                                 <mat-cell *matCellDef="let row">{{ row.schemeName }}</mat-cell>
                             </ng-container>
                         
-                            <!-- State Column -->
-                            <ng-container matColumnDef="schemeDescription">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
-                                <mat-cell *matCellDef="let row">{{ row.schemeDescription }}</mat-cell>
-                            </ng-container>
-
+                            <!-- State Column -->                            
                             <ng-container matColumnDef="schemeNAV">
                               <mat-header-cell *matHeaderCellDef mat-sort-header> NAV </mat-header-cell>
                               <mat-cell *matCellDef="let row">{{ row.schemeNAV }}</mat-cell>
@@ -48,11 +43,42 @@
                               <mat-cell *matCellDef="let row">{{ row.categoryName }}</mat-cell>
                             </ng-container>
 
+                            <ng-container matColumnDef="oneYrRet">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> 1 year return </mat-header-cell>
+                                <mat-cell *matCellDef="let row">{{ row.oneYrRet }}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="threeYrRet">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> 3 year return </mat-header-cell>
+                                <mat-cell *matCellDef="let row">{{ row.threeYrRet }}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="fiveYrRet">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> 5 year return </mat-header-cell>
+                                <mat-cell *matCellDef="let row">{{ row.fiveYrRet }}</mat-cell>
+                            </ng-container>
+
                             <ng-container matColumnDef="actions">
                                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                                <mat-cell *matCellDef="let row" >                                    
-                                            <i class="material-icons" style="color: #3a539b" (click)="OnEditClick(row._id, row.categoryName, row.categoryDescription)" style="cursor: pointer">mode edit</i>
-                                            <i class="material-icons" style="color: #3a539b" (click)="OnDeleteClick(row._id)" style="cursor: pointer">delete</i>
+                                <mat-cell *matCellDef="let row" >
+                                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    
+                                    <mat-menu #menu="matMenu">                                      
+                                        <button mat-menu-item class="btn-link"
+                                        (click)="OnEditClick(row._id, row.schemeName, row.schemeDescription)"
+                                        >
+                                            <mat-icon>mode_edit</mat-icon>
+                                            <span style="text-decoration: none; font-size: .65em">Edit</span>
+                                        </button>
+                                        <button mat-menu-item class="btn-link"
+                                        (click)="OnDeleteClick(row._id, row.schemeName)"
+                                        >
+                                            <mat-icon>delete</mat-icon>
+                                            <span>Delete</span>
+                                        </button>
+                                    </mat-menu>
                                 </mat-cell>
                             </ng-container> 
                             

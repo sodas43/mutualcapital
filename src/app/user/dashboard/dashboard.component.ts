@@ -1,10 +1,14 @@
+import { SchemeService } from './../../shared/services/scheme.service';
 import { Component, OnInit } from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource, MatDialog} from '@angular/material';
 import  { Chart } from 'chart.js';
+import * as moment from 'moment';
 
-export interface CategoryInterface {
-  categoryName: string;
-  categoryDescription: string;
+export interface TransactionInterface {
+  schemeName: string;
+  type: string;
+  date: Date;
+  amt: Number
 }
 
 @Component({
@@ -14,10 +18,25 @@ export interface CategoryInterface {
 })
 export class DashboardComponent implements OnInit {
   chart = [];
+  transactions: any[];
 
-  constructor() { }
+  constructor(private schemeServive: SchemeService) { }
 
   ngOnInit() {
+    this.generateChart();
+    this.findUpcomingTransactions();
+    //this.transactions. = moment(this.transactions.date, 'dd-mmm');
+  }
+  
+  findUpcomingTransactions() {
+    this.schemeServive.GetAllSchemes()
+      .subscribe(res => {
+        this.transactions = res.json();
+        console.log("transactions: "+this.transactions);
+      });
+  }
+
+  generateChart() {
     let weatherDates = [];
     let temp_max = '100';
     let temp_min = '0';
@@ -53,6 +72,5 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-
 }
 

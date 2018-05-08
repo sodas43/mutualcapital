@@ -1,4 +1,4 @@
-mat-form-field {
+::ng-deep .mat-form-field {
         width: 300px;
     }
     
@@ -30,18 +30,18 @@ mat-form-field {
     }
 
     mat-row:nth-child(even){
-        background-color: #3a529b54;
+        background-color: #e2e2e2;
         }
 
-    mat-header-row {
-        background-color: #3a539b; 
+        ::ng-deep .mat-header-row {
+        background-color: rgb(2, 30, 72); 
         color: #ffffff;
         text-transform: uppercase;
         text-align: center;
         align-content: center;
     }
 
-    mat-header-cell {
+    ::ng-deep .mat-header-cell {
         /* background-color: #3a539b;  */
         color: #ffffff;
         text-transform: uppercase;
@@ -54,7 +54,7 @@ mat-form-field {
         background-color: #3a539b; 
         color: #fff;
     } */
-    mat-cell {
+    ::ng-deep .mat-cell {
         display:flex;
         justify-content:flex-end;
     }
@@ -69,7 +69,7 @@ mat-form-field {
         transform:scale(.88,.88);
     }
 
-    mat-table {
+    ::ng-deep .mat-table {
         min-width: 100%;
         border-collapse: collapse;
 

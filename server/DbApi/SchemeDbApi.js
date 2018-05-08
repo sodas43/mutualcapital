@@ -1,17 +1,21 @@
 "use strict";
 var mongoose = require('mongoose');
 var Scheme = require('../models/scheme');
+var AMFIScheme = require('../models/amfischeme');
+var transaction = require('../models/transaction');
+var lineReader = require('line-reader');
 
 var _clone = function(item) {
         return JSON.parse(JSON.stringify(item));
 };
+
 
 var SchemeDbApi = {
 
         Add: function(scheme, callback) {          
                 //console.log("Adding ........")
                 //console.log(JSON.stringify(scheme));      
-                Scheme.save( (err) => {
+                scheme.save( (err) => {
                         if(err)	console.log("Error :: " + err);                                    
                         callback(null, _clone(scheme));		
                 });
@@ -21,13 +25,29 @@ var SchemeDbApi = {
                 Scheme.find({}, (err, schemes) => {
                         if(err)	console.log("Error :: " + err);
                         callback(null, _clone(schemes));
-                });		
+                });
+
+                // //JUST FOR TESTING PURPOSE
+                // transaction.find({}, (err, transactions) => {
+                //         if(err)	console.log("Error :: " + err);
+                //         callback(null, _clone(transactions));
+                // });
+
         },
       
         getSchemeById: function(id, callback) {
                 console.log("calling getSchemeById");
                 //scheme.findById({'_id': ObjectId(id)}, (err, scheme) => {
                 Scheme.findById(id, (err, scheme) => {
+                        if(err)	console.log("Error :: " + err);      
+                        callback (null, _clone(scheme));				
+                });		
+        },
+
+        getSchemeByName: function(name, callback) {
+                console.log("calling getSchemeByName : "+name);
+                //scheme.findById({'_id': ObjectId(id)}, (err, scheme) => {
+                Scheme.find({schemeName: name}, 'schemeNAV schemeCode oneYrRet threeYrRet fiveYrRet', (err, scheme) => {
                         if(err)	console.log("Error :: " + err);      
                         callback (null, _clone(scheme));				
                 });		
@@ -44,13 +64,54 @@ var SchemeDbApi = {
                         callback (null, _clone(schemeToUpdate));
                 });			
         },
+
+        updateScheme: function(body, callback) {
+            console.log("updateScheme: schemeName = " + body.schemeName);
+            console.log("updateScheme: body = " + JSON.stringify(body));
+                
+            var query = {"schemeName": body.schemeName};
+            var update = {
+              "categoryName": body.categoryName,
+              "subCategory": body.subCategoryName,
+              "schemeType": body.schemeType,
+              "oneYrRet": body.oneYrRet,
+              "threeYrRet": body.threeYrRet,
+              "fiveYrRet": body.fiveYrRet
+            };
+            var options = {new: true};
+            
+            Scheme.findOneAndUpdate(query, update, options, (err, scheme) => {
+                if(err) console.log("Err :: "+ err);
+                                          
+                callback(null, _clone(scheme));
+            });			
+        },
       
+        updateSchemeNAV: function(scheme, callback) {
+          console.log("updateScheme: schemeName = " + scheme.schemeName);
+          console.log("updateScheme: scheme = " + JSON.stringify(scheme));
+              
+          var query = {"schemeCode": scheme.schemeCode};
+          var update = {            
+            "schemeNAV": scheme.schemeNAV,            
+          };
+          var options = {new: true};
+          
+          Scheme.findOneAndUpdate(query, update, options, (err, scheme) => {
+              if(err) console.log("Err :: "+ err);
+                                        
+              callback(null, _clone(scheme));
+          });			
+        },
+    
         deleteSchemeById: function(id, callback) {
                 Scheme.findByIdAndRemove(id, (err, scheme) => {
                         if(err)	console.log("Err :: "+ err);
                         callback(null, _clone(scheme));		
                 });        
-        }      
+        },
+
+      
 };
       
 module.exports = SchemeDbApi ;

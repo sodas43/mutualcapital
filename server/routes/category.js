@@ -55,6 +55,13 @@ router.get('/listCategoryNames', function(req, res) {
   });
 });
 
+// GET ALL SUB CATEGORY NAMES BASED ON CATEGORY
+router.get('/listSubCategoryNames/:category', function(req, res) {
+	CategoryDbApi.getAllSubCategoryNamesByCategory(req.params.category, function(err, items) {
+	  res.json(items);
+  });
+});
+
 // DELETE
 router.delete('/deleteCategory/:id', function(req, res) {
 	//console.log('delete' + req.params.id);
@@ -63,7 +70,7 @@ router.delete('/deleteCategory/:id', function(req, res) {
 	});
 });
 
-router.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname + '/../../dist/index.html'));
-});
+// router.get('/*', function (req, res) {
+//   res.sendFile(path.join(__dirname + '/../../dist/index.html'));
+// });
 module.exports = router;

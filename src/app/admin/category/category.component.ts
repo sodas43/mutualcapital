@@ -109,11 +109,14 @@ export class CategoryComponent implements OnInit {
     });
 
   }
-  OnDeleteClick(id) {
+  OnDeleteClick(id, categoryName) {
     console.log("Delete clicked");
-
+    let category = {
+      id: id,
+      categoryName: categoryName      
+    };
     const dialogRef = this.dialog.open(DeleteDialogComponent, {      
-      data: { id }
+      data: { category }
     });
 
     dialogRef.afterClosed().subscribe(result => {

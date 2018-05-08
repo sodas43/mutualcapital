@@ -21,6 +21,10 @@ body {
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 } */
+a {
+    text-decoration: none;
+    color:#fff;
+}
 .sticky {
     position:absolute;
     z-index:20;
@@ -121,7 +125,8 @@ mat-card {
 }
 
 h2.txnStatus.upcoming {
-    background-color: rgba(0, 128, 128, 0.726);
+    /* background-color: rgba(0, 128, 128, 0.726); */
+    background-color: #22a6b3;
 }
 .bglabel {
         align-content: center;

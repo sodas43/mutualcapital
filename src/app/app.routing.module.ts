@@ -1,3 +1,4 @@
+import { PurchaseComponent } from './user/purchase/purchase.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: 'user', component: UserComponent, canActivate: [AuthGuardService] },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
     { path: 'portfolio', component: PortfolioComponent, canActivate: [AuthGuardService] },
+    { path: 'purchase', component: PurchaseComponent, canActivate: [AuthGuardService] },
     
 ];
 

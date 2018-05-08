@@ -8,10 +8,12 @@ import { DeleteComponent } from './dialog/delete/delete.component';
 
 export interface SchemeInterface {
   schemeName: string;
-  schemeDescription: string;
   schemeNAV: number;
   subCategory: string;
   categoryName: string;
+  oneYrRet: Number;
+  threeYrRet: Number;
+  fiveYrRet: Number;
 }
 
 @Component({
@@ -21,8 +23,12 @@ export interface SchemeInterface {
 })
 export class SchemesComponent implements OnInit {
 
-  displayedColumns = ['schemeName', 'schemeDescription', 'schemeNAV', 'subCategory', 'categoryName', 'actions'];
-  categoryDatabase: SchemeService | null;
+  displayedColumns = ['schemeName', 'schemeNAV',
+                      'subCategory', 'categoryName',
+                      'oneYrRet', 'threeYrRet',
+                      'fiveYrRet', 'actions'];
+  
+                      schemeDatabase: SchemeService | null;
   dataSource = new MatTableDataSource<SchemeInterface>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,6 +42,14 @@ export class SchemesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getAllSchemes();
+  }
+
+  ngAfterViewInit() {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   getAllSchemes() {
@@ -44,7 +58,7 @@ export class SchemesComponent implements OnInit {
           this.Schemes = res.json();
           this.dataSource.data = this.Schemes;
           
-          console.log(JSON.stringify(this.Schemes));
+          //console.log(JSON.stringify(this.Schemes));
       })
   }
 
@@ -57,7 +71,7 @@ export class SchemesComponent implements OnInit {
   OnAddClick() {
     console.log("Add clicked");
     const dialogRef = this.dialog.open(AddSchemeComponent, {
-      width: '500px'
+      width: '1000px'
       //data: {data: data }
     });
 

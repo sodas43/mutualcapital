@@ -1,3 +1,4 @@
+
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
@@ -75,5 +76,11 @@ export class CategoryService {
     console.log("Get All Category Names");
     
     return this.http.get(this.url+'/listCategoryNames');
+  }
+
+  GetAllSubCategoryNames(category) {
+    console.log("Get All Sub Category Names : "+category);
+    
+    return this.http.get(this.url+'/listSubCategoryNames/'+category);
   }
 }

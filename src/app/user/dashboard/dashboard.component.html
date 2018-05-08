@@ -32,10 +32,11 @@
 				<div class="bglabel">
                     <h5> DASHBOARD </h5>                    
                 </div>
+
                 <button class="btn btn-success btn-sm sticky">
-                        <i class="material-icons">add</i>
-                        New Transaction                        
-                    </button>
+                    <i class="material-icons">add</i>
+                    <a routerLink="/purchase">New Transaction</a>
+                </button>
                 
                 
 			    <br><br>
@@ -60,13 +61,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>	
-                                                <tr>
-                                                    <td class="date">14 Apr</td>
-                                                    <td><span class="txnType">SIP</span></td>
+                                                <tr *ngFor='let trans of transactions'>
+                                                    <!-- <td class="date">{{ moment(trans.date, 'dd-mmm-yyyy') }}</td> -->
+                                                    <td><span class="txnType">{{ trans.type }}</span></td>
                                                     <td class="scheme">
-                                                            <a style="color:#555" href="/mutual-fund-products/equity-schemes/small-cap-micro-cap-fund/dspmc-regular-growth" target="_blank" title="Go to Small Cap Fund Regular Growth">Small Cap Fund</a>
+                                                            <a style="color:#555" 
+                                                             href="/mutual-fund-products/equity-schemes/small-cap-micro-cap-fund/dspmc-regular-growth" 
+                                                             target="_blank" 
+                                                             title="Go to Small Cap Fund Regular Growth"
+                                                            >{{ trans.schemeName }}</a>
                                                     </td>
-                                                    <td><span class="WebRupee">Rs.&nbsp;</span> 4,000</td>
+                                                    <td><span class="WebRupee">Rs.&nbsp;</span> {{ trans.amt }}</td>
                                                 </tr>													
                                         </tbody>
                                     </table>

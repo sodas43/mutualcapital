@@ -12,7 +12,7 @@ import { environment } from './../../../environments/environment';
 @Injectable()
 export class SchemeService {
 
-  private url = environment.URL+"/Category";
+  private url = environment.URL+"/Scheme";
 
   dataChange: BehaviorSubject<category[]> = new BehaviorSubject<category[]>([]);
 
@@ -31,7 +31,20 @@ export class SchemeService {
     })
   }
 
-  EditCategory(id, schemeToEdit) {
+  UpdateScheme(schemeToUpdate) {
+    console.log("Update Scheme Service");
+    
+        return this.http.post(this.url+'/UpdateScheme', schemeToUpdate)
+        .map(res => {      
+          console.log(res.json());      
+        })
+        .catch ((err: Response) => {
+          console.log("Error: "+ JSON.stringify(err.json()));   
+          return Observable.throw(err.json());
+        })
+  }
+  
+  EditScheme(id, schemeToEdit) {
     console.log("Edit Scheme Service: id "+id);
 
     return this.http.put(this.url+'/editScheme/'+id, schemeToEdit)
@@ -64,9 +77,16 @@ export class SchemeService {
   }
 
   GetScheme(id) {
-    console.log("Get Category Service: id = "+id);
+    console.log("Get Scheme Service: id = "+id);
 
     return this.http.get(this.url+'/listScheme/'+id);
+  }
+
+  GetSchemeDetails(schemeName) {
+    console.log("Get SchemeDetails Service: name = "+schemeName);
+
+    return this.http.get(this.url+'/getSchemeDetails/'+schemeName);
+
   }
 
 }
