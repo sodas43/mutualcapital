@@ -40,7 +40,7 @@
         </mat-form-field>
 
         <mat-form-field>                               
-          <input type='text' matInput placeholder="Scheme Code" ngModel name="schemeCode" [value]="code" readonly="readonly">                               
+          <input type='text' matInput placeholder="Scheme Code" [(ngModel)]="code" name="schemeCode" readonly>                               
         </mat-form-field>
     
         <mat-form-field>
@@ -52,21 +52,21 @@
           </mat-select>            
         </mat-form-field>
     
-        <mat-form-field>
-          <input type='number' matInput placeholder="Scheme NAV" ngModel name="schemeNAV" [value]="NAV" readonly="readonly">
-          <mat-hint align="start"><strong>Today's NAV</strong></mat-hint>
+        <mat-form-field>          
+          <input type='number' matInput placeholder="Scheme NAV" [(ngModel)]="NAV" name="schemeNAV" readonly>
+          <mat-hint align="start"><strong>Showing Today's NAV. Don't change this</strong></mat-hint>
         </mat-form-field>
        
         <mat-form-field>
-          <input type='number' matInput placeholder="1 year Return (%)" ngModel name="oneYrRet" [value]="oneYrRet" readonly="readonly">          
+          <input type='number' matInput placeholder="1 year Return (%)" [(ngModel)]="oneyrRet" name="oneYrRet" readonly>
         </mat-form-field>
 
         <mat-form-field>
-          <input type='number' matInput placeholder="3 year Return (%)" ngModel name="threeYrRet" [value]="threeYrRet" readonly="readonly">
+          <input type='number' matInput placeholder="3 year Return (%)" [(ngModel)]="threeyrRet" name="threeYrRet" readonly>
         </mat-form-field>
 
         <mat-form-field>
-          <input type='number' matInput placeholder="5 year Return (%)" ngModel name="fiveYrRet" [value]="fiveYrRet" readonly="readonly">
+          <input type='number' matInput placeholder="5 year Return (%)" [(ngModel)]="fiveyrRet" readonly  name="fiveYrRet" readonly>
         </mat-form-field>
         
         <div mat-dialog-actions style="float:right">

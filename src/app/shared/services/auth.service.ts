@@ -13,7 +13,8 @@ export class AuthService {
   private url = environment.URL;
   Name ? : any;
   public userName ? : any; 
-  public isadmin:boolean; 
+  public isadmin:boolean;
+  public uid: any; 
 
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter(); 
   @Output() getLoggedInNameIsAdmin: EventEmitter<any> = new EventEmitter();
@@ -31,11 +32,17 @@ export class AuthService {
           console.log("Auth service : "+this.Name['isAdmin']);
           this.isadmin = this.Name['isAdmin'];
           console.log("IS ADMIN : "+this.isadmin);
+          this.uid = this.Name['uid'];
+          console.log("User ID : "+this.uid);
           
           this.getLoggedInName.emit(this.userName);
           this.getLoggedInNameIsAdmin.emit(this.isadmin);
           
-          let storeItem = {'user': this.userName, 'isAdmin': this.Name['isAdmin']};
+          let storeItem = {
+            'user'   : this.userName,
+            'isAdmin': this.Name['isAdmin'],
+            'uid'    : this.uid
+          };
           //localStorage.setItem('UserDetails', JSON.stringify(storeItem));         
           this.StoreToLocalStorage('UserDetails', storeItem);
 

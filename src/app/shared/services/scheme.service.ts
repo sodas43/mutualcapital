@@ -4,7 +4,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { Observable } from 'rxjs/Rx';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+//import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { category } from '../../admin/category/models/category';
 import { Http } from '@angular/http';
 import { environment } from './../../../environments/environment';
@@ -14,7 +14,7 @@ export class SchemeService {
 
   private url = environment.URL+"/Scheme";
 
-  dataChange: BehaviorSubject<category[]> = new BehaviorSubject<category[]>([]);
+  //dataChange: BehaviorSubject<category[]> = new BehaviorSubject<category[]>([]);
 
   constructor( private http: Http ) { }
 
@@ -57,10 +57,10 @@ export class SchemeService {
     })
   }
 
-  DeleteScheme(id) {
-    console.log("Delete Scheme Service: id "+id);
+  DeleteScheme(schemeName) {
+    console.log("Delete Scheme Service: name "+schemeName);
 
-    return this.http.delete(this.url+'/deleteScheme/'+id)
+    return this.http.delete(this.url+'/deleteScheme/'+schemeName)
     .map(res => {      
       console.log(res.json());      
     })

@@ -149,6 +149,6 @@ dl.horizontal>dd {
   font-size: .85em;
 }
 
-::ng-deep .mat-form-field {
+/* ::ng-deep .mat-form-field {
   width: 400px;
-}
+} */

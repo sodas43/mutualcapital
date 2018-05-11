@@ -34,8 +34,10 @@ import { AddSchemeComponent } from './admin/schemes/dialog/add/add.component';
 import { UserComponent } from './admin/user/user.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { PortfolioComponent } from './user/portfolio/portfolio.component';
-import { UserService } from './shared/serrvices/user.service';
 import { PurchaseComponent } from './user/purchase/purchase.component';
+import { ProductsComponent } from './user/products/products.component';
+import { AdminGuardService } from './shared/services/admin-guard.service';
+import { TransService } from './shared/services/trans.service';
 //import { CustomToastOption } from './shared/components/custom-toast-option';
 
 
@@ -61,7 +63,8 @@ import { PurchaseComponent } from './user/purchase/purchase.component';
     UserComponent,
     ProfileComponent,
     PortfolioComponent,
-    PurchaseComponent
+    PurchaseComponent,
+    ProductsComponent
   ],
   entryComponents: [
     AddComponent,
@@ -90,8 +93,8 @@ import { PurchaseComponent } from './user/purchase/purchase.component';
     AuthService,
     CategoryService,
     AuthGuardService,
-    SchemeService,
-    UserService,
+    SchemeService,    
+    AdminGuardService, TransService,
     //{ provide: ToastOptions, useClass: CustomToastOption }
   ],
   bootstrap: [AppComponent]

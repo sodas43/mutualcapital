@@ -1,3 +1,17 @@
-<p>
-  delete works!
-</p>
+<div class="container" style="border-radius: 8px">
+    <h3 mat-dialog-title class='bglabel'> Confirm </h3>
+    <div mat-dialog-content style='align-content: center'>
+      <h5>Are you sure you want to delete</h5>
+      <div class='data text-center'>{{ data.schemeName }}</div>      
+    </div>
+  
+    <div mat-dialog-actions style="float: right">
+      <button class="btn btn-round" (click)="onNoClick()" tabindex="-1">
+          <i class="material-icons">clear</i>  No
+      </button>
+      <button class="btn btn-danger btn-round" (click)="confirmDelete()">
+          <i class="material-icons">done</i>  Yes
+      </button>
+      
+    </div>
+  </div>

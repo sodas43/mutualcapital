@@ -19,6 +19,9 @@ export interface TransactionInterface {
 export class DashboardComponent implements OnInit {
   chart = [];
   transactions: any[];
+  todaysDate: Date;
+
+  anoDate: Date;
 
   constructor(private schemeServive: SchemeService) { }
 
@@ -26,6 +29,11 @@ export class DashboardComponent implements OnInit {
     this.generateChart();
     this.findUpcomingTransactions();
     //this.transactions. = moment(this.transactions.date, 'dd-mmm');
+    this.todaysDate = new Date();
+    //this.todaysDate.setDate( this.todaysDate.getDate() + 3 );
+    this.todaysDate.setMonth(this.todaysDate.getMonth()+1);
+    console.log("date : "+this.todaysDate);
+
   }
   
   findUpcomingTransactions() {

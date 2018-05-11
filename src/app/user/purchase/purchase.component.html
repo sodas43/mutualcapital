@@ -3,7 +3,10 @@
     <div class="profile-content">
         <div class="container">
 
-            
+            <div class="row">
+                Find the Best Schemes for our need !!
+                <a class="btn-info" routerLink="/products"> Click Here </a>
+            </div>
             <div class="row">
                 <div class="col-md-12 ml-auto mr-auto">
                   <br><br>
@@ -46,21 +49,44 @@
                         fxLayoutAlign="center center" 
                         fxLayoutGap="10px"
                         #f1="ngForm" (ngSubmit)="onLumpsumSubmit(f1)">
-                          <mat-form-field>                               
-                            <input matInput class='cust' placeholder="Scheme Name" ngModel name="schemeName" required>                               
-                          </mat-form-field>                           
-                          <mat-form-field>
-                          <input matInput placeholder="Amount" ngModel name="amount" required>                              
-                          </mat-form-field>
-                          
-                          <div style="float:right">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <mat-form-field>                               
+                                    <input matInput class='cust' placeholder="Scheme Name" ngModel name="schemeName" 
+                                    list="schemeNames" required (blur)="fillSchemeDetails($event)">                               
+                                    <datalist id="schemeNames">
+                                      <option *ngFor="let scheme of schemes" [value]="scheme">
+                                        {{ scheme }}
+                                      </option>
+                                    </datalist>         
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="submit" 
+                                class="btn btn-round btn-sm btn-info"
+                            >
+                            <i class="fas fa-search"></i>
+                            </button>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <mat-form-field>
+                                <input matInput placeholder="Amount" ngModel name="amount" required>                              
+                                </mat-form-field>
+                            </div>
+                        </div>
+                                                   
+
+                        <div style="float:right">
                               <button type="submit" 
                                 class="btn btn-round btn-success"                    
                                 [disabled]="f1.invalid"                                
                               >
                               <i class="fas fa-forward"></i> Payment
                               </button> 
-                          </div>
+                        </div>
                           
                         </form>  
                                                       
@@ -69,15 +95,34 @@
                 </div>
                 <div class="tab-pane text-center gallery" id="SIPDetails">
                     <div class="row">
-                      <div class="col-lg-12 col-sm-12 columns mainColumn">
+                      <div class="col-sm-12 columns mainColumn">
                           <form            
                           fxLayout='column' 
                           fxLayoutAlign="center center" 
                           fxLayoutGap="10px"
                           #f2="ngForm" (ngSubmit)="onSIPSubmit(f2)">
-                            <mat-form-field>                               
-                              <input matInput class='cust' placeholder="Scheme Name" ngModel name="schemeName" required>                               
-                            </mat-form-field>                           
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <mat-form-field>                               
+                                        <input matInput class='cust' placeholder="Scheme Name" ngModel name="schemeName" 
+                                        list="schemeNames" required (blur)="fillSchemeDetails($event)">                               
+                                        <datalist id="schemeNames">
+                                          <option *ngFor="let scheme of schemes" [value]="scheme">
+                                            {{ scheme }}
+                                          </option>
+                                        </datalist>         
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="submit" 
+                                    class="btn btn-round btn-sm btn-info"
+                                >
+                                <i class="fas fa-search"></i>
+                                </button>
+                                </div>
+                            </div>
+                            
+                                                       
                             <mat-form-field>
                             <input matInput placeholder="Installment Amount" ngModel name="amount" required>                              
                             </mat-form-field>
@@ -88,12 +133,21 @@
                                 <mat-datepicker touchUi="true" #picker></mat-datepicker>
                             </mat-form-field>
 
+                            <mat-form-field>
+                                <mat-select placeholder="Duration (in months)" required ngModel name="duration">
+                                  <mat-option [value]='12'>12</mat-option>
+                                  <!-- <mat-option *ngFor='let schemeType of schemeTypes' [value]='schemeType.value'>
+                                    {{ schemeType.value }}
+                                  </mat-option> -->
+                                </mat-select>            
+                            </mat-form-field>
+
                             <div style="float:right">
                                 <button type="submit" 
                                   class="btn btn-round btn-success"                    
                                   [disabled]="f2.invalid"                                
                                 >
-                                <i class="fas fa-forward"></i> Payment
+                                <i class="fas fa-forward"></i> Start SIP
                                 </button> 
                             </div>
                             

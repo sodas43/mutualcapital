@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { SchemeService } from './../../../../shared/services/scheme.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-delete',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<DeleteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public schemeService: SchemeService
+  ) { }
 
   ngOnInit() {
   }
-
+  confirmDelete() {
+    this.schemeService.DeleteScheme(this.data.schemeName)
+          .subscribe(
+              (res) => {
+                console.log('Service success');                
+                this.dialogRef.close();
+                 
+              },
+              (err) => {
+                console.log('Service failed' + JSON.stringify(err));                
+              }
+          );
+  }
+  
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

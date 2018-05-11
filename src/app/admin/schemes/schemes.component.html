@@ -67,13 +67,17 @@
                                     
                                     <mat-menu #menu="matMenu">                                      
                                         <button mat-menu-item class="btn-link"
-                                        (click)="OnEditClick(row._id, row.schemeName, row.schemeDescription)"
+                                        (click)="OnEditClick(row.schemeName, row.schemeCode,
+                                        row.categoryName, row.subCategoryName,
+                                        row.schemeType, row.schemeNAV,
+                                        row.oneYrRet, row.threeYrRet,
+                                        row.fiveYrRet)"
                                         >
                                             <mat-icon>mode_edit</mat-icon>
-                                            <span style="text-decoration: none; font-size: .65em">Edit</span>
+                                            <span>Edit</span>
                                         </button>
                                         <button mat-menu-item class="btn-link"
-                                        (click)="OnDeleteClick(row._id, row.schemeName)"
+                                        (click)="OnDeleteClick(row.schemeName)"
                                         >
                                             <mat-icon>delete</mat-icon>
                                             <span>Delete</span>

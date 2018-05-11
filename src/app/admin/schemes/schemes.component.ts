@@ -81,16 +81,24 @@ export class SchemesComponent implements OnInit {
     });
   }
 
-  OnEditClick(id, categoryName, categoryDescription) {    
-    let category = {
-      id: id,
+  OnEditClick(schemeName, schemeCode, categoryName, subCategoryName,
+    schemeType, schemeNAV, oneYrRet, threeYrRet, fiveYrRet
+  ) {    
+    let Scheme = {
+      schemeName: schemeName,
+      schemeCode: schemeCode,
       categoryName: categoryName,
-      categoryDescription: categoryDescription
+      subCategoryName: subCategoryName,
+      schemeType: schemeType,
+      schemeNAV: schemeNAV,
+      oneYrRet: oneYrRet,
+      threeYrRet: threeYrRet,
+      fiveYrRet: fiveYrRet      
     };
     //this.categoryToEdit = category;
     const dialogRef = this.dialog.open(EditComponent, {
       // data: { id: id, categoryName: categoryName, categoryDescription: categoryDescription }
-      data: { category }
+      data: { Scheme }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -99,11 +107,11 @@ export class SchemesComponent implements OnInit {
     });
 
   }
-  OnDeleteClick(id) {
+  OnDeleteClick(schemeName) {
     console.log("Delete clicked");
 
     const dialogRef = this.dialog.open(DeleteComponent, {      
-      data: { id }
+      data: { schemeName }
     });
 
     dialogRef.afterClosed().subscribe(result => {

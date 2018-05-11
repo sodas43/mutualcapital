@@ -198,7 +198,8 @@ router.get('/reset/password/:token', function(req, res, next) {
 				}
 				console.log("Got User: "+ user.local.firstName+" "+user.local.lastName);
 				console.log("Is Admin: "+ user.local.isAdmin);
-				return res.status(200).json({user: user.local.firstName+" "+user.local.lastName, isAdmin: user.local.isAdmin});				
+				console.log("uid: "+ user._id);
+				return res.status(200).json({user: user.local.firstName+" "+user.local.lastName, isAdmin: user.local.isAdmin, uid: user._id});				
 			})(req, res, next);
 		});
 		

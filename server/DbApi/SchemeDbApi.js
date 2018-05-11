@@ -73,7 +73,9 @@ var SchemeDbApi = {
             var update = {
               "categoryName": body.categoryName,
               "subCategory": body.subCategoryName,
+              "schemeCode": body.schemeCode,
               "schemeType": body.schemeType,
+              "schemeNAV": body.schemeNAV,
               "oneYrRet": body.oneYrRet,
               "threeYrRet": body.threeYrRet,
               "fiveYrRet": body.fiveYrRet
@@ -104,12 +106,12 @@ var SchemeDbApi = {
           });			
         },
     
-        deleteSchemeById: function(id, callback) {
-                Scheme.findByIdAndRemove(id, (err, scheme) => {
-                        if(err)	console.log("Err :: "+ err);
-                        callback(null, _clone(scheme));		
-                });        
-        },
+        // deleteSchemeById: function(id, callback) {
+        //         Scheme.findByIdAndRemove(id, (err, scheme) => {
+        //                 if(err)	console.log("Err :: "+ err);
+        //                 callback(null, _clone(scheme));		
+        //         });        
+        // },
 
       
 };

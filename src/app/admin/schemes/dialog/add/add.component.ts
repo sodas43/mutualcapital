@@ -25,9 +25,9 @@ export class AddSchemeComponent implements OnInit {
   public schemes=[];
   public NAV ? : any;
   public code ? : any;
-  public oneYrRet ? : any;
-  public threeYrRet ? : any;
-  public fiveYrRet ? : any;
+  public oneyrRet ? : any;
+  public threeyrRet ? : any;
+  public fiveyrRet ? : any;
 
 
   isSubCategoryEmpty:boolean = false;
@@ -139,9 +139,9 @@ export class AddSchemeComponent implements OnInit {
 
           this.NAV = data[0]['schemeNAV'];
           this.code = data[0]['schemeCode'];
-          this.oneYrRet = data[0]['oneYrRet'];
-          this.threeYrRet = data[0]['threeYrRet'];
-          this.fiveYrRet = data[0]['fiveYrRet'];
+          this.oneyrRet = data[0]['oneYrRet'];
+          this.threeyrRet = data[0]['threeYrRet'];
+          this.fiveyrRet = data[0]['fiveYrRet'];
           
           //console.log(res.json());
         })

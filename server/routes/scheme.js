@@ -5,6 +5,7 @@ var Scheme = require('../models/scheme');
 var AMFIScheme = require('../models/amfischeme');
 var SchemeDbApi = require('../DbApi/SchemeDbApi');
 var lineReader = require('line-reader');
+var schedule = require('node-schedule');
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -36,7 +37,7 @@ function toJSON(str) {
 			threeYrRet: getRandomInt(5, 15),
 			fiveYrRet: getRandomInt(8, 25)
 		});
-		console.log(scheme);
+		//console.log(scheme);
 		SchemeDbApi.updateSchemeNAV(scheme, function(err, scheme) {
 	  		//res.json(scheme);
 		});
@@ -69,11 +70,10 @@ function getSchemeNAV() {
 							// 	str.search('DSP')>= 0 ||
 							// 	str.search('HDFC')>= 0 ||
 							// 	str.search('ICICI')>= 0 ||
-								if (str.search('Axis')>= 0 ||
-								str.search('DSP')>= 0 ||
+								if (str.search('DSP')>= 0 ||
 								str.search('HDFC')>= 0
 							) {
-								console.log("Found : " +str);
+								//console.log("Found : " +str);
 								var s = header+'\n'+str;
 								//console.log("s : "+s);
 								toJSON(s);
@@ -84,6 +84,15 @@ function getSchemeNAV() {
 			}
 	});  	
 }
+
+var rule = new schedule.RecurrenceRule();
+rule.hour=22;
+rule.minute=02;
+rule.second=0;
+
+var upDateNAVDaily = schedule.scheduleJob(rule, function() {
+	getSchemeNAV();  
+});
 
 //getSchemeNAV();
 // ===================================================================

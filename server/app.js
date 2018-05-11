@@ -78,8 +78,8 @@ app.use(flash());
 //GET NAV ========================
 
 var rule = new schedule.RecurrenceRule();
-rule.hour=14;
-rule.minute=28;
+rule.hour=22;
+rule.minute=00;
 rule.second=0;
 
 
@@ -91,9 +91,9 @@ var readAMFIFileDaily = schedule.scheduleJob(rule, function() {
   });
 
   
-  Scheme.remove({}, function (err) {
-    if (err) console.log("ERROR :: "+ err);
-  });
+  // Scheme.remove({}, function (err) {
+  //   if (err) console.log("ERROR :: "+ err);
+  // });
 });
 
 
@@ -106,6 +106,9 @@ app.use('/Category', categoryRoute);
 
 var schemeRoute = require('./routes/scheme');
 app.use('/Scheme', schemeRoute);
+
+var transacRoute = require('./routes/transaction');
+app.use('/Transact', transacRoute);
 // app.use('/users', users);
 
 // catch 404 and forward to error handler

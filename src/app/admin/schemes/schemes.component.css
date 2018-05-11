@@ -33,7 +33,7 @@ mat-row:nth-child(even){
     background-color: #e2e2e2;
     }
 
-mat-header-row {
+::ng-deep .mat-header-row {
     background-color: rgb(2, 30, 72); 
     color: #ffffff;
     text-transform: uppercase;
@@ -41,7 +41,7 @@ mat-header-row {
     align-content: center;
 }
 
-mat-header-cell {
+::ng-deep .mat-header-cell {
     /* background-color: #3a539b;  */
     color: #ffffff;
     text-transform: uppercase;
@@ -54,7 +54,7 @@ mat-header-cell {
     background-color: #3a539b; 
     color: #fff;
 } */
-mat-cell {
+::ng-deep .mat-cell {
     display:flex;
     justify-content:flex-end;
 }
@@ -69,8 +69,13 @@ mat-cell {
     transform:scale(.88,.88);
 }
 
-mat-table {
+::ng-deep .mat-table {
     min-width: 100%;
     border-collapse: collapse;
 
+}
+
+::ng-deep .mat-menu {
+    text-decoration: none;
+    font-size: .85em;
 }
