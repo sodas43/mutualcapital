@@ -37,7 +37,7 @@ export class EditComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<EditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Scheme,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private categoryService: CategoryService, 
     private schemeService: SchemeService
   ) { }

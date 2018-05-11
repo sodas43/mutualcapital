@@ -20,7 +20,7 @@
           </mat-form-field>
       
           <mat-form-field>
-            <mat-select selected="data.Scheme.categoryName" [(ngModel)]="data.scheme.subCategoryName" placeholder="Sub category Name" name="subCategoryName" required [disabled]='isSubCategoryEmpty'>
+            <mat-select [(ngModel)]="data.Scheme.subCategoryName" placeholder="Sub category Name" name="subCategoryName" required [disabled]='isSubCategoryEmpty'>
               <mat-option>--</mat-option>
               <mat-option *ngFor='let subCategoryName of subCategoryNames' [value]='subCategoryName'>
                 {{ subCategoryName }}
