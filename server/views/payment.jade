@@ -1,0 +1,14 @@
+extends ./layout
+br
+br
+br
+block content
+.col-sm-8.col-sm-offset-2
+  div(style="align-content: center; font-family: 'lato'; background-color: #3a539b;         margin-top: 15px; margin-bottom: 10px; text-transform: uppercase; font-weight: 300;         font-size: 15px; word-spacing: 4px; letter-spacing: 1px; color: #fff; text-align: center;         box-shadow: 0px 5px 30px #6c7a89")
+    h5 CONFIRM PURCHASE
+    br
+    form#payment-form(method='POST')
+      button#stripeButton.btn.btn-success.waves-effect.waves-light.blue.darken-3(type='submit', value='Process payment', data-key='{{paymentConfig.publicKey}}', data-amount='{{amountNoDecimal session.totalCartAmount}}', data-name='{{config.cartTitle}}', data-description='{{config.cartTitle}} Payment', data-image='{{paymentConfig.stripeLogoURL}}', data-locale='auto', data-zip-code='false', data-currency='{{paymentConfig.stripeCurrency}}')
+        i.fa.fa-cc-stripe.fa-lg(aria-hidden='true')
+        |  Process payment         
+      script(src='https://checkout.stripe.com/v2/checkout.js')
