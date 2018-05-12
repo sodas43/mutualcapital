@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  URL: "http://127.0.0.1:4200"
+  URL: "http://127.0.0.1:4200",
+  STRIPE_KEY: "pk_test_a7vMPlWQsfxYWuTAMBfDzKLe"
 };

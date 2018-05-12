@@ -6,6 +6,7 @@ var lumpsum = require('../models/lumpsum');
 var TransactionDbApi = require('../DbApi/transactionDBApi');
 var Scheme = require('../models/scheme');
 var SchemeDbApi = require('../DbApi/SchemeDbApi');
+var stripe = require('stripe')(process.env.STRIPE_KEY);
 
 // ===================================================================
 //                         T R A N S A C T I O N S
@@ -79,5 +80,40 @@ router.post("/AddTransaction", function(req, res) {
 	  res.json(newTrans);
 	});
 })
+
+router.post("/payment", function(req, res) {
+    var cardToken = req.body.cardToken;
+	var amount = req.body.amount;
+    console.log("card token : "+ cardToken);
+    console.log("amt : "+ amount);
+
+	// stripe.customers.create({
+	// 	source: cardToken,
+	// 	description: "User Payment" // this is usually the user email
+	// }).then(function(customer) {
+        var charge = stripe.charges.create({
+            amount: parseInt(parseFloat(amount * 100), 10),
+            currency: 'usd',
+            source: cardToken,
+            // customer: customer.id,
+            description: 'Payment'
+          }, function(err, charge) {
+            if(err) {
+              return res.status(500).json({ message: err })
+            }
+
+            // TransactionDbApi.AddLumpsum(newLumpsum, function(err, newLumpsum) {
+	        //     //res.json(newLumpsum);
+            // });
+            
+            // TransactionDbApi.AddTransacton(newTrans, function(err, newTrans) {
+            //     //res.json(newTrans);
+            // });
+
+            res.status(200).json({ message: "Payment successful" });
+        });
+    //});
+})
+
 
 module.exports = router;

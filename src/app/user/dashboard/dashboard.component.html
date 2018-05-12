@@ -5,30 +5,7 @@
 	<div class="section text-center">
 	    <div class="row">
 		    <div class="col-md-12 ml-auto mr-auto">
-                <!-- <header id="AccountHeader">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-6 col-md-6 bglabel">
-                                <h2>Dashboard</h2>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6 columns nopadd">
-                                <div class="button-bar" id="AccountCTAs">
-                                    <ul class="button-group">
-                                        <li>
-                                            <a data-dropdown="dropNewTransaction" 
-                                                class="button dropdown small primary"
-                                                id="trxnButton" href="#">
-                                                New transaction
-                                            </a>
-                                            <ul data-dropdown-content="" class="f-dropdown tiny" id="dropNewTransaction">
-                                                <li><a href="/transact/purchase">Purchase</a></li>
-                                                <li><a href="/transact/SIP">SIP</a></li>							
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </header> -->
+
 				<div class="bglabel">
                     <h5> DASHBOARD </h5>                    
                 </div>
@@ -112,7 +89,7 @@
                                                 <a href="/account/investor-transactions?q2=ALL"
                                                    style='color: #005eb8; text-decoration: none; line-height: inherit;'
                                                 >
-                                                    See more recent transactions »
+                                                    See more recent transactions  »
                                                 </a>
                                             </td>
                                         </tr>
@@ -132,11 +109,13 @@
                                 </div>
                                 <section id="SchemeTypeAllocation" class="greyBox">
                                     <h2>Fund Type Break-up</h2>
-                                    <canvas id="canvas" class="chartjs" width="30" height="30"
+                                    <!-- <canvas id="canvas" class="chartjs" width="30" height="30"
                                      style="display: block; width: 30px; height: 30px;">
-                                    </canvas>                                      
+                                    </canvas> -->
+                                    <div id="chartdiv"></div>							
                                 </section>
-                            </div>							
+                            </div>
+                            
                         </aside>
                     </div>	
                 </section>

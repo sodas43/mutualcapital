@@ -38,8 +38,10 @@ import { PurchaseComponent } from './user/purchase/purchase.component';
 import { ProductsComponent } from './user/products/products.component';
 import { AdminGuardService } from './shared/services/admin-guard.service';
 import { TransService } from './shared/services/trans.service';
+import { PaymentComponent } from './user/payment/payment.component';
+import { PaymentService } from './shared/services/payment.service';
 //import { CustomToastOption } from './shared/components/custom-toast-option';
-
+import { AmChartsModule } from "@amcharts/amcharts3-angular";
 
 
 @NgModule({
@@ -64,7 +66,8 @@ import { TransService } from './shared/services/trans.service';
     ProfileComponent,
     PortfolioComponent,
     PurchaseComponent,
-    ProductsComponent
+    ProductsComponent,
+    PaymentComponent   
   ],
   entryComponents: [
     AddComponent,
@@ -73,7 +76,8 @@ import { TransService } from './shared/services/trans.service';
     ForgotPasswordComponent,
     AddSchemeComponent,
     EditComponent,
-    DeleteComponent
+    DeleteComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,8 @@ import { TransService } from './shared/services/trans.service';
     HttpModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    AmChartsModule
     
    
   ],
@@ -94,7 +99,7 @@ import { TransService } from './shared/services/trans.service';
     CategoryService,
     AuthGuardService,
     SchemeService,    
-    AdminGuardService, TransService,
+    AdminGuardService, TransService, PaymentService,
     //{ provide: ToastOptions, useClass: CustomToastOption }
   ],
   bootstrap: [AppComponent]

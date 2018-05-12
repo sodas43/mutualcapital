@@ -1,7 +1,10 @@
+import { PaymentComponent } from './../payment/payment.component';
+import { Router } from '@angular/router';
 import { TransService } from './../../shared/services/trans.service';
 import { SchemeService } from './../../shared/services/scheme.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-purchase',
@@ -18,7 +21,9 @@ export class PurchaseComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private schemeService: SchemeService,
-    private transService: TransService
+    private transService: TransService,
+    private router: Router,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -49,20 +54,43 @@ export class PurchaseComponent implements OnInit {
       schemeName : form.value.schemeName,                
       amt        : form.value.amount,
       date_bought: new Date(),
-      user_id    : this.UID      
+      user_id    : this.UID
     };
 
-    
-    this.transService.AddLumpsum(newLumpsum)
-      .subscribe(
-        (res) => {
-          console.log('Service success');     
-        },
-        (err) => {
-          console.log('Service failed' + JSON.stringify(err));
-        }
-      );
+    //First Do Payment
+    const dialogRef = this.dialog.open(PaymentComponent, {
+      width: '500px',
+      data: newLumpsum      
+    });
+      
 
+    dialogRef.afterClosed().subscribe(result => {
+      //console.log("my result: "+JSON.stringify(result));
+
+      //if(result.msg === "Payment successful") {
+        //Payment success. Now add
+        this.transService.AddLumpsum(newLumpsum)
+          .subscribe(
+            (res) => {
+              console.log('Lumpsum Service success');     
+            },
+            (err) => {
+              console.log('Lumpsum Service failed' + JSON.stringify(err));
+            }
+          );
+        
+        this.transService.AddTransaction(newLumpsum)
+          .subscribe(
+            (res) => {
+              console.log('Transaction Service success');     
+            },
+            (err) => {
+              console.log('Transaction Service failed' + JSON.stringify(err));
+            }
+          );
+      //}
+      //console.log("result: "+result);
+    })
   }
   onSIPSubmit(form: NgForm) {
     console.log("SIP : "+JSON.stringify(form.value));

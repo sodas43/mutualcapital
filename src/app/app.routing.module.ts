@@ -13,6 +13,7 @@ import { PortfolioComponent } from './user/portfolio/portfolio.component';
 import { ProductsComponent } from './user/products/products.component';
 import { PurchaseComponent } from './user/purchase/purchase.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
+import { PaymentComponent } from './user/payment/payment.component';
 
 const routes: Routes = [
     { path: '', component: WelcomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
     { path: 'portfolio', component: PortfolioComponent, canActivate: [AuthGuardService] },
     { path: 'purchase', component: PurchaseComponent, canActivate: [AuthGuardService] },
     { path: 'products', component: ProductsComponent, canActivate: [AuthGuardService] },
+    { path: 'products', component: PaymentComponent, canActivate: [AuthGuardService] },
     
 ];
 

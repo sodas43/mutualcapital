@@ -17,7 +17,6 @@ var fs = require('fs');
 var Scheme = require('./models/scheme');
 
 
-
 var passport = require('passport');
 var session = require('express-session');
 
@@ -29,6 +28,7 @@ if (app.get('env') === 'development') {
   console.log("development mode -- need dotenv module");
   require('dotenv').config();
 }
+var stripe = require('stripe')(process.env.STRIPE_KEY);
 
 //DATABASE
 var mongoose = require('mongoose');
