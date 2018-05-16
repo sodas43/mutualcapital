@@ -88,5 +88,12 @@ export class SchemeService {
     return this.http.get(this.url+'/getSchemeDetails/'+schemeName);
 
   }
+  
+  GetSchemeNAV(schemeName) {
+    console.log("Get SchemeNAV Service: name = "+schemeName);
+
+    return this.http.get(this.url+'/getSchemeNAV/'+schemeName);
+
+  }
 
 }

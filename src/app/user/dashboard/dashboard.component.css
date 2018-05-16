@@ -124,6 +124,12 @@ mat-card {
     background-color: olivedrab;
 }
 
+.txnStatus.trans_type {
+    /* background-color: #FBCA04; */
+    background-color: #fb8a0054;
+    color:midnightblue;
+}
+
 h2.txnStatus.upcoming {
     /* background-color: rgba(0, 128, 128, 0.726); */
     background-color: #22a6b3;

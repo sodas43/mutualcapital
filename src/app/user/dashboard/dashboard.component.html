@@ -12,7 +12,8 @@
 
                 <button class="btn btn-success btn-sm sticky">
                     <i class="material-icons">add</i>
-                    <a routerLink="/purchase">New Transaction</a>
+                    <!-- <a routerLink="/purchase">New Transaction</a> -->
+                    <a (click)="onClick()">New Transaction</a>
                 </button>
                 
                 
@@ -24,8 +25,8 @@
                                 <h2 class="txnStatus upcoming">Upcoming transactions</h2>
                                     <table class="txnList">	
                                         <colgroup>
-                                            <col width="12%" class="date">
-                                            <col width="18%">
+                                            <col width="18%" class="date">
+                                            <col width="12%">
                                             <col width="50%">
                                             <col width="20%">
                                         </colgroup>
@@ -38,17 +39,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>	
-                                                <tr *ngFor='let trans of transactions'>
-                                                    <!-- <td class="date">{{ moment(trans.date, 'dd-mmm-yyyy') }}</td> -->
-                                                    <td><span class="txnType">{{ trans.type }}</span></td>
-                                                    <td class="scheme">
-                                                            <a style="color:#555" 
-                                                             href="/mutual-fund-products/equity-schemes/small-cap-micro-cap-fund/dspmc-regular-growth" 
-                                                             target="_blank" 
-                                                             title="Go to Small Cap Fund Regular Growth"
-                                                            >{{ trans.schemeName }}</a>
-                                                    </td>
-                                                    <td><span class="WebRupee">Rs.&nbsp;</span> {{ trans.amt }}</td>
+                                                <tr *ngFor='let trans of upcomingTransactions'>
+                                                    <td class="date">{{ trans.startdate | date }}</td>
+                                                    <td><span class="txnStatus trans_type">SIP</span></td>
+                                                    <td class="scheme">{{ trans.schemeName }}</td>
+                                                    <td><i class="fas fa-rupee-sign"></i> {{ trans.amt }}</td>
                                                 </tr>													
                                         </tbody>
                                     </table>
@@ -58,11 +53,11 @@
                                 <h2 class="txnStatus recent">Recent Transactions</h2>
                                 <table class="txnList" id="transactionList">
                                     <colgroup>
-                                        <col width="8%" class="date">
+                                        <col width="12%" class="date">
+                                        <col width="9%">
                                         <col width="10%">
-                                        <col width="12%">
                                         <col width="28%">
-                                        <col width="15%">
+                                        <col width="14%">
                                     </colgroup>
                                     <thead>
                                         <tr>
@@ -74,13 +69,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="date">15 Mar</td>
+                                        <tr *ngFor='let trans of limitedtransactions'>
+                                            <td class="date">{{ trans.date_bought | date }}</td>
                                             <td><span class="txnStatus completed">Processed</span></td>
-                                            <td class="txnType">SIP</td>
-                                            <td class="scheme"><a style="color:#555" href="/mutual-fund-products/equity-schemes/ELSS-tax-saver-fund/dspts-direct-growth" target="_blank" title="Go to Tax Saver Fund Direct Growth">Tax Saver Fund</a>
-                                            </td>
-                                            <td><span class="WebRupee">Rs.</span> 2,000</td>
+                                            <td><span class="txnStatus trans_type">{{ trans.trans_type }}</span></td>
+                                            <td class="scheme">{{ trans.schemeName }}</td>
+                                            <td><i class="fas fa-rupee-sign"></i> {{ trans.amt }}</td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
@@ -103,8 +97,8 @@
                             <div id="RightPartial">
                                 <div id="valseq1" class="small-12 portValWeb">
                                     <section id="CurrentValuation_portValWeb" class="greyBox">
-                                        <h2>Your Portfolio's Value<p><small>as on 10 Apr, 2018</small></p></h2>
-                                            <span class="value"><i class="fas fa-rupee-sign"></i> 1.65 lakhs <input type="hidden" name="currentaum_portValWeb" id="currentaum_portValWeb" value="164,591.328"></span>										
+                                        <h2>Your Portfolio's Value<p><small>as on  {{ todaysDate | date }}</small></p></h2>
+                                            <span class="value"><i class="fas fa-rupee-sign"></i> {{ totalValuation }} </span>										
                                     </section>
                                 </div>
                                 <section id="SchemeTypeAllocation" class="greyBox">

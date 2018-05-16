@@ -44,6 +44,16 @@ var SchemeDbApi = {
                 });		
         },
 
+        getSchemeNAV: function(name, callback) {
+                console.log("calling getSchemeNAV : "+name);
+                //scheme.findById({'_id': ObjectId(id)}, (err, scheme) => {
+                Scheme.find({schemeName: name}, 'schemeNAV', (err, NAV) => {
+                        if(err)	console.log("Error :: " + err);
+                        console.log("NAV == "+NAV);
+                        callback (null, _clone(NAV));				
+                });		
+        }, 
+
         getSchemeByName: function(name, callback) {
                 console.log("calling getSchemeByName : "+name);
                 //scheme.findById({'_id': ObjectId(id)}, (err, scheme) => {

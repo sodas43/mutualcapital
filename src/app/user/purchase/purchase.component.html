@@ -128,7 +128,9 @@
                             </mat-form-field>
                             
                             <mat-form-field>
-                                <input matInput [matDatepicker]="picker" placeholder="1st SIP Installment date" ngModel name="startDate" required>
+                                <input matInput [matDatepicker]="picker" placeholder="1st SIP Installment date"
+                                    [matDatepickerFilter]="myFilter" [min]="minDate" [max]="maxDate"
+                                    ngModel name="startDate" required>
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker touchUi="true" #picker></mat-datepicker>
                             </mat-form-field>

@@ -2,9 +2,11 @@ import { PaymentComponent } from './../payment/payment.component';
 import { Router } from '@angular/router';
 import { TransService } from './../../shared/services/trans.service';
 import { SchemeService } from './../../shared/services/scheme.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 
 @Component({
   selector: 'app-purchase',
@@ -18,13 +20,20 @@ export class PurchaseComponent implements OnInit {
   public schemes=[];
   public NAV ? : any;
   public UID: any;
+  minDate = new Date();
+  maxDate = new Date(2018, 12, 31);
+
   constructor(
     private _formBuilder: FormBuilder,
     private schemeService: SchemeService,
     private transService: TransService,
     private router: Router,
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    public toaster: ToastsManager,
+    public vcr: ViewContainerRef
+  ) { 
+    this.toaster.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
     this.GetAllSchemes();
@@ -37,6 +46,18 @@ export class PurchaseComponent implements OnInit {
       secondCtrl: ['', Validators.required]
     });
 
+  }
+
+  myFilter = (d: Date): boolean => {
+    const day = d.getDay();
+    //console.log("day : "+day);
+    
+    let today = new Date();
+    const t = today.getDay();
+    //console.log("today : "+t);
+    // Prevent Saturday, Sunday and today from being selected.
+    //return day !== 0 && day !== t && day !== 6;
+    return day !== 6; // TESTING PURPOSE
   }
 
   GetUid() {
@@ -57,6 +78,16 @@ export class PurchaseComponent implements OnInit {
       user_id    : this.UID
     };
 
+    let newTransact = {
+      schemeName : form.value.schemeName,                
+      amt        : form.value.amount,
+      date_bought: new Date(),
+      trans_type : "Lumpsum",
+      NAV        : this.NAV,
+      units_bought: Math.floor(form.value.amount / this.NAV),
+      user_id    : this.UID
+    };
+
     //First Do Payment
     const dialogRef = this.dialog.open(PaymentComponent, {
       width: '500px',
@@ -72,22 +103,26 @@ export class PurchaseComponent implements OnInit {
         this.transService.AddLumpsum(newLumpsum)
           .subscribe(
             (res) => {
-              console.log('Lumpsum Service success');     
+              console.log('Lumpsum Service success');
+              
+              this.transService.AddTransaction(newTransact)
+              .subscribe(
+                (res) => {
+                  console.log('Transaction Service success');
+                  this.toaster.success("Your transaction is successful !", "SUCCESS");
+                },
+                (err) => {
+                  console.log('Transaction Service failed' + JSON.stringify(err));
+                }
+              );
             },
             (err) => {
               console.log('Lumpsum Service failed' + JSON.stringify(err));
             }
           );
         
-        this.transService.AddTransaction(newLumpsum)
-          .subscribe(
-            (res) => {
-              console.log('Transaction Service success');     
-            },
-            (err) => {
-              console.log('Transaction Service failed' + JSON.stringify(err));
-            }
-          );
+        
+          
       //}
       //console.log("result: "+result);
     })
@@ -104,10 +139,32 @@ export class PurchaseComponent implements OnInit {
       user_id    : this.UID      
     };
 
+    let newTransact = {
+      schemeName : form.value.schemeName,                
+      amt        : form.value.amount,
+      startdate  : form.value.startDate,
+      trans_type : "SIP",      
+      user_id    : this.UID
+    };
+
     this.transService.AddSIP(newSIP)
       .subscribe(
         (res) => {
-          console.log('Service success');     
+          console.log('SIP Service success');
+          
+          this.transService.AddUpcomingTransaction(newSIP)
+          .subscribe(
+            (res) => {
+              console.log('SIP Service success');
+              this.toaster.success("Your SIP has been activated !", "CONGRATULATIONS !!");
+              this.toaster.info("SIP amount will be debited directly from your bank A/C", "ATTENTION");
+              
+              
+            },
+            (err) => {
+              console.log('Service failed' + JSON.stringify(err));
+            }
+          );
         },
         (err) => {
           console.log('Service failed' + JSON.stringify(err));

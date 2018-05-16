@@ -4,19 +4,15 @@ var mongoose = require('mongoose');
 // define the schema for our user model
 var SchemaTypes = mongoose.Schema.Types;
 
-var transactionSchema = mongoose.Schema({
+var upcomingTransactionSchema = mongoose.Schema({
         schemeName   : String,                
         amt          : Number,
-        trans_type   : String,
-        trans_no     : String,
-        date_bought  : Date,
-        NAV          : Number,
-        units_bought : Number,
-        sipCnt       : Number,
+        Tns_type   : String,
+        startdate     : Date,        
         user_id      : { type: mongoose.Schema.Types.ObjectId, ref: 'User'}     
 },
-{ collection: 'transactions' }
+{ collection: 'upcomingTransactions' }
 );
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('transaction', transactionSchema);
+module.exports = mongoose.model('upcomingTransaction', upcomingTransactionSchema);

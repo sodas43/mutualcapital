@@ -1,8 +1,9 @@
 import { TransService } from './../../shared/services/trans.service';
 import { PaymentService } from './../../shared/services/payment.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { environment } from './../../../environments/environment';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 declare var Stripe;
 
@@ -27,33 +28,18 @@ export class PaymentComponent implements OnInit {
     private transService: TransService,
     public dialogRef: MatDialogRef<PaymentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-  ) { }
+    public toaster: ToastsManager,
+    public vcr: ViewContainerRef
+  ) {
+    this.toaster.setRootViewContainerRef(vcr);
+   }
 
   ngOnInit() {
     Stripe.setPublishableKey(environment.STRIPE_KEY);
     console.log("amt : "+JSON.stringify(this.data.amt));
     this.amount = this.data.amt;
   }
-
-  createToken(number, month, year, cvc) {
-  	let cardDetail = {
-  		number: number,
-  		exp_month: month,
-  		exp_year: year,
-  		cvc: cvc
-    }
-    
-    return Stripe.card.createToken(cardDetail, (status, response) => {
-  		if(response.error) {
-  			console.log(response.error.message);
-  		} else {
-        console.log("token creation success : "+response.id);
-        this.cardToken = response.id;
-        console.log("token creation : "+this.cardToken);
-  		}
-    });
-    
-  }
+ 
 
   // validateAmount() {
   // 	let validNumber = Number(this.amount);
@@ -103,7 +89,8 @@ export class PaymentComponent implements OnInit {
                 this.expMonth = null;
                 this.expYear = null;
 
-                this.dialogRef.close();
+                this.toaster.success("Your Payment is successfull !", "CONGRATULATIONS !!");
+                //this.dialogRef.close();
                 
               }
               // if(res.success) {

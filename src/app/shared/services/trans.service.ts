@@ -42,7 +42,7 @@ export class TransService {
   }
 
   AddTransaction(NewTransaction) {
-    console.log("Add Scheme Service");
+    console.log("Add Transaction Service");
 
     return this.http.post(this.url+'/AddTransaction', NewTransaction)
     .map(res => {      
@@ -54,4 +54,44 @@ export class TransService {
     })
   }
 
+  AddUpcomingTransaction(NewUpcomingTransaction) {
+    console.log("Add Transaction Service");
+
+    return this.http.post(this.url+'/AddUpcomingTransaction', NewUpcomingTransaction)
+    .map(res => {      
+      console.log(res.json());      
+    })
+    .catch ((err: Response) => {
+      console.log("Error: "+ JSON.stringify(err.json()));   
+      return Observable.throw(err.json());
+    })
+  }
+
+  GetUpcomingTransaction(UID) {
+    console.log("Get Upcoming Transaction Service : "+UID);
+
+    return this.http.get(this.url+'/listUpcomingTransactions/'+UID);
+    
+  }
+
+  GetAllTransactions(UID) {
+    console.log("Get All Transaction Service : "+UID);
+
+    return this.http.get(this.url+'/listAllTransactions/'+UID);
+    
+  }
+
+  GetLimitedAllTransactions(UID) {
+    console.log("Get Limited All Transaction Service : "+UID);
+
+    return this.http.get(this.url+'/listLimitedAllTransactions/'+UID);
+    
+  }
+
+  GetDistinctSchemesFromAllTransactions(UID) {
+    console.log("Get DistinctSchemes from All Transaction Service : "+UID);
+
+    return this.http.get(this.url+'/listDistinctSchemesFromAllTransactions/'+UID);
+    
+  }
 }
