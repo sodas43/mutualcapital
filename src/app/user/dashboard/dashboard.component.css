@@ -236,4 +236,12 @@ h2.txnStatus.upcoming {
         width		: 100%;
         height		: 500px;
         font-size	: 11px;
-    }	
+    }
+
+    .price {
+        display: inline-block;
+      }
+      
+      .price::first-letter {
+        padding-right: 0.3em;
+      }

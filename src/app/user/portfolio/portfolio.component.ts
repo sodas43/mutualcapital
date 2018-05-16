@@ -32,10 +32,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     
   }
   
-  ngAfterViewInit() {  
-    this.PopulateDistinctSchemeNAV()
-      .then( res => this.PopulateTodaysTotalValue()) 
-    
+  ngAfterViewInit() {     
     this.findAllTransactions();    
   }
 
@@ -49,7 +46,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   }
 
   PopulateDistinctSchemeNAV() {
-    return new Promise((resolve, reject) => {
+    
       this.transacService.GetDistinctSchemesFromAllTransactions(this.UID)
       .subscribe(res => {
         
@@ -68,29 +65,30 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
               if(NAV) {
                 this.add(this.schemeNameMap, element, NAV);
               }
-              console.log("ele: "+element+" , NAV: "+NAV);
-              //this.schemeNameMap.set(ele, NAV);
-              //console.log("da : "+this.schemeNameMap.get(ele));
-          })
-        })
-           
-      })
-      resolve();
-    });   
+              //console.log("ele: "+element+" , NAV: "+NAV);              
+            },
+            err => {
+              console.log("Err : "+err);
+            },
+            () => {//when complete
+              this.PopulateTodaysTotalValue(element);
+            }
+          )
+        })           
+      })       
   }
 
-  PopulateTodaysTotalValue() {
-    this.distinctSchemes.forEach(ele => {
+  PopulateTodaysTotalValue(ele) {
       console.log(ele);
       console.log("===============================");
       console.log(this.schemeNameMap.get(ele)+" -- "+ this.todaysCostMap.get(ele));
       console.log("Multi : "+(this.schemeNameMap.get(ele) * this.todaysCostMap.get(ele)).toFixed(2));
-      this.todaysTotalVal += (this.schemeNameMap.get(ele) * this.todaysCostMap.get(ele)).toFixed(2);
+      this.todaysTotalVal += parseFloat((this.schemeNameMap.get(ele) * this.todaysCostMap.get(ele)).toFixed(2));
       console.log(ele+"=> "+this.todaysTotalVal);
       console.log("===============================");
-    })
+    //})
     
-    this.todaysTotalDiff = (this.todaysTotalVal - this.totalPurchaseVal).toFixed(2);
+    //this.todaysTotalDiff = (this.todaysTotalVal - this.totalPurchaseVal).toFixed(2);
   }
 
   PopulateBuyCost() {
@@ -112,13 +110,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     .forEach(element => {
         this.add(this.todaysCostMap, element.schemeName, element.units_bought);
     })
-
-    this.todaysCostMap.forEach((val: Number, key: string) => {
-      //this.totalPurchaseVal += val;
-      //console.log(key+" --- "+val);
-    })
-    //this.convertToArray(this.buyCostMap);
-
+    this.PopulateDistinctSchemeNAV(); 
   }
   
   findAllTransactions() {

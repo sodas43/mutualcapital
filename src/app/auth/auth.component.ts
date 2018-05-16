@@ -8,6 +8,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatSnackBar, MatSnackBarConfig, MatDialog } from '@angular/material';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ForgotPasswordComponent } from './dialog/forgot-password/forgot-password.component';
+import { MessageService } from '../shared/services/message.service';
 
 
 
@@ -46,7 +47,8 @@ export class AuthComponent implements OnInit {
     public toaster: ToastsManager,
     public vcr: ViewContainerRef,
     private authService: AuthService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private messageService: MessageService
   ) { 
     console.log("auth component constructor");
     this.toaster.setRootViewContainerRef(vcr);
@@ -144,26 +146,17 @@ export class AuthComponent implements OnInit {
   OnForgotPasswordClick() {
     console.log("Forgot Password clicked");
     const dialogRef = this.dialog.open(ForgotPasswordComponent, {
-      width: '500px'
+      width: '500px',
+      disableClose: true
       //data: {data: data }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // let msg = ` An email has been sent to `+'<b>' + form.value.email + '</b>' +`with further instructions.<br>Please check your Inbox`; 
-      let msg = ` An email has been sent `+`with further instructions.<br>Please check your Inbox`; 
-      this.toaster.info(msg, ' INFO !! ', {enableHTML: true} );     
+      // // let msg = ` An email has been sent to `+'<b>' + form.value.email + '</b>' +`with further instructions.<br>Please check your Inbox`; 
+      // let msg = ` An email has been sent `+`with further instructions.<br>Please check your Inbox`; 
+      // this.toaster.info(msg, ' INFO !! ', {enableHTML: true} );     
     });
   }
-  // AuthenticateUsingtwitter() {
-  //   console.log("calling twitter");
-  //   // this.router.navigateByUrl('http:127.0.0.1:4200/auth/twitter')
-  //   this.router.navigate
-  //   this.http.get('/auth/twitter')
-  //     .subscribe(response => {
-  //       this.user = response.json();
-  //       console.log("user details: "+ this.user);
-  //     });
-     
-  // }
+  
 
 }

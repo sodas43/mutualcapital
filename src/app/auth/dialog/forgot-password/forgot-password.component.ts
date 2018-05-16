@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthService } from '../../../shared/services/auth.service';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
+import { MessageService } from '../../../shared/services/message.service';
 
 
 @Component({
@@ -17,9 +18,10 @@ export class ForgotPasswordComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private authService: AuthService,
     public toaster: ToastsManager,
-    public vcr: ViewContainerRef
+    public vcr: ViewContainerRef,
+    private messageService: MessageService
   ) {
-    this.toaster.setRootViewContainerRef(vcr);
+    //this.toaster.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
@@ -35,6 +37,8 @@ export class ForgotPasswordComponent implements OnInit {
           .subscribe(
               (res) => {
                 console.log('Service success');
+                let msg = ` An email has been sent to `+'<b>'+form.value.email+'</b>'+` with further instructions.<br>Please check your Inbox`; 
+                this.messageService.showInfo(msg, "SENT !!", null);
                 
                 this.dialogRef.close();
                  

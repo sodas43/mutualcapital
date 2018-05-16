@@ -74,7 +74,7 @@
                                             <td><span class="txnStatus completed">Processed</span></td>
                                             <td><span class="txnStatus trans_type">{{ trans.trans_type }}</span></td>
                                             <td class="scheme">{{ trans.schemeName }}</td>
-                                            <td><i class="fas fa-rupee-sign"></i> {{ trans.amt }}</td>
+                                            <td><span class="price">{{ trans.amt | currency: 'INR' }}</span></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
@@ -98,7 +98,7 @@
                                 <div id="valseq1" class="small-12 portValWeb">
                                     <section id="CurrentValuation_portValWeb" class="greyBox">
                                         <h2>Your Portfolio's Value<p><small>as on  {{ todaysDate | date }}</small></p></h2>
-                                            <span class="value"><i class="fas fa-rupee-sign"></i> {{ totalValuation }} </span>										
+                                            <span class="value"><span class="price">{{ todaysTotalVal | currency: 'INR' }} </span></span>
                                     </section>
                                 </div>
                                 <section id="SchemeTypeAllocation" class="greyBox">

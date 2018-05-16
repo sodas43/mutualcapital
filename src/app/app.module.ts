@@ -42,6 +42,8 @@ import { PaymentComponent } from './user/payment/payment.component';
 import { PaymentService } from './shared/services/payment.service';
 //import { CustomToastOption } from './shared/components/custom-toast-option';
 import { AmChartsModule } from "@amcharts/amcharts3-angular";
+import { ToastrModule } from 'ngx-toastr';
+import { MessageService } from './shared/services/message.service';
 
 
 @NgModule({
@@ -90,6 +92,11 @@ import { AmChartsModule } from "@amcharts/amcharts3-angular";
     HttpClientModule,
     ReactiveFormsModule,
     ToastModule.forRoot(),
+    ToastrModule.forRoot({
+      enableHtml: true,
+      timeOut: 8000,
+      positionClass: 'toast-top-full-width'
+    }),
     AmChartsModule
     
    
@@ -99,7 +106,7 @@ import { AmChartsModule } from "@amcharts/amcharts3-angular";
     CategoryService,
     AuthGuardService,
     SchemeService,    
-    AdminGuardService, TransService, PaymentService,
+    AdminGuardService, TransService, PaymentService, MessageService,
     //{ provide: ToastOptions, useClass: CustomToastOption }
   ],
   bootstrap: [AppComponent]

@@ -29,9 +29,9 @@
           </thead>
           <tbody style='font-weight:500; font-size:.9em'>
           <tr>
-          <td><i class="fas fa-rupee-sign"></i> {{ totalPurchaseVal }}</td>              
-          <td><i class="fas fa-rupee-sign"></i> {{ todaysTotalVal }}</td>
-          <td><i class="fas fa-rupee-sign"></i> <span [ngClass]="(todaysTotalDiff > 0) ? 'positive' : 'negative'">{{ todaysTotalDiff }}</span></td>
+          <td><span class="price">{{ totalPurchaseVal | currency: 'INR' }}</span></td>              
+          <td><span class="price">{{ todaysTotalVal | currency: 'INR' }}</span></td>
+          <td><span class="price"> <span [ngClass]="((todaysTotalVal - totalPurchaseVal) > 0) ? 'positive' : 'negative'">{{ (todaysTotalVal - totalPurchaseVal) | currency: 'INR' }}</span></span></td>
           <!-- <td><span> 12.77 %</span></td> -->
           </tr>
           </tbody>
@@ -62,15 +62,15 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td><i class="fas fa-rupee-sign"></i>{{ buyCostMap.get(trans) }}</td>
-                      <td><i class="fas fa-rupee-sign"></i>{{ (todaysCostMap.get(trans) * schemeNameMap.get(trans)).toFixed(2) }}</td>
+                      <td><span class="price">{{ buyCostMap.get(trans) | currency: 'INR' }}</span></td>
+                      <td><span class="price">{{ (todaysCostMap.get(trans) * schemeNameMap.get(trans)) | currency: 'INR' }}</span></td>
                       <td>                   
                         <span 
                           [ngClass]="((todaysCostMap.get(trans) * schemeNameMap.get(trans)) > buyCostMap.get(trans)) ? 
                           'positive' : 'negative'">
                             <i [ngClass]="((todaysCostMap.get(trans) * schemeNameMap.get(trans)) > buyCostMap.get(trans)) ? 
                               'fas fa-caret-up' : 'fas fa-caret-down'"></i>
-                                {{ ((todaysCostMap.get(trans) * schemeNameMap.get(trans)) - buyCostMap.get(trans)).toFixed(2) }}
+                                {{ ((todaysCostMap.get(trans) * schemeNameMap.get(trans)) - buyCostMap.get(trans)) | currency: 'INR' }}
                         </span> 
                         <!-- <span class="negative"><i class="fas fa-caret-down"></i> 9,750.82</span> -->
                       </td>

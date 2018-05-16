@@ -119,3 +119,10 @@ h3 {
   text-align: center;
   box-shadow: 0px 5px 30px #6c7a89;
 }
+.price {
+  display: inline-block;
+}
+
+.price::first-letter {
+  padding-right: 0.3em;
+}

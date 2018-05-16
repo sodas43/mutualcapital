@@ -34,6 +34,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   public distinctSchemes: string[];
 
   schemeNameMap  =  new Map();
+  distinctSchemetoUnitMap = new Map();
+  todaysTotalVal : any = 0;
 
   constructor(
     private schemeServive: SchemeService,
@@ -42,20 +44,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {   
-    this.GetUid();
-    //this.transactions. = moment(this.transactions.date, 'dd-mmm');
+    this.GetUid();    
     this.todaysDate = new Date();
-    this.PopulateDistinctSchemeNAV();
-    
-    //this.todaysDate.setDate( this.todaysDate.getDate() + 3 );
-    //this.todaysDate.setMonth(this.todaysDate.getMonth()+1);
-    //console.log("date : "+this.todaysDate);
-
   }
 
   ngAfterViewInit() {
     this.findLimitedAllTransactions();
-    
     this.findUpcomingTransactions();
     this.generateChart();
     this.findAllTransactions();
@@ -71,9 +65,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
   }
 
-    onClick() {
-      this.CalculateTotalValuation();
-    }
   PopulateDistinctSchemeNAV() {
     this.transacService.GetDistinctSchemesFromAllTransactions(this.UID)
     .subscribe(res => {
@@ -90,62 +81,34 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             let items = res.json();
             let NAV = items[0]["schemeNAV"];
             
-            console.log("ele: "+ele+" , NAV: "+NAV);
-            this.schemeNameMap.set(ele, NAV);
-            console.log("da : "+this.schemeNameMap.get(ele));
-        })
+            if(NAV) {
+              this.add(this.schemeNameMap, ele, NAV);
+            }
+            //console.log("ele: "+element+" , NAV: "+NAV);              
+          },
+          err => {
+            console.log("Err : "+err);
+          },
+          () => {//when complete
+            this.PopulateTodaysTotalValue(ele);
+          }
+        )
       })
       
     })
    
   }
-  CalculateTotalValuation() {
-    //console.log("here:"+JSON.stringify(this.transactions));
-    
-    // this.transacService.GetDistinctSchemesFromAllTransactions(this.UID)
-    //   .subscribe(res => {
-        
-    //     let result:string = res.json();
-                
-    //     this.distinctSchemes = result.toString().split(',');
-        
-    //     this.distinctSchemes.forEach(ele => {
-    //       //console.log("ele: "+ele);
-    //       this.schemeServive.GetSchemeNAV(ele)
-    //         .subscribe(res => {
-              
-    //           let items = res.json();
-    //           let NAV = items[0]["schemeNAV"];
-              
-    //           //console.log("ele: "+ele+" , NAV: "+NAV);
-    //           this.schemeNameMap.set(ele, NAV);
-    //           console.log("da : "+this.schemeNameMap.get(ele));
-    //       })
-    //     })
 
-    
-        this.schemeNameMap.forEach((val: Number, key: string) => {
-          console.log(key+" --- "+val);
-        })
-        
-        if(this.schemeNameMap.size != 0) {
-          this.transactions
-          .forEach(element => {
-            let scheme_NAV = this.schemeNameMap.get(element.schemeName);
-            console.log("trans : "+scheme_NAV);
-            //console.log("scheme : "+element.schemeName+" NAV : "+element.NAV+" Units : "+element.units_bought);
-            this.totalValuation += (element.units_bought * scheme_NAV);
-          });
-          this.totalValuation = (this.totalValuation).toFixed(2);
-        
-          console.log("VALUATION: "+this.totalValuation);        
-        }
-        
-      //});
-  }
-
-  
-  
+  PopulateTodaysTotalValue(ele) {
+    // console.log(ele);
+    // console.log("===============================");
+    // console.log(this.schemeNameMap.get(ele)+" -- "+ this.todaysCostMap.get(ele));
+    // console.log("Multi : "+(this.schemeNameMap.get(ele) * this.todaysCostMap.get(ele)).toFixed(2));
+    this.todaysTotalVal += parseFloat((this.schemeNameMap.get(ele) * this.distinctSchemetoUnitMap.get(ele)).toFixed(2));
+    // console.log(ele+"=> "+this.todaysTotalVal);
+    // console.log("==============================="); 
+}
+ 
   findUpcomingTransactions() {
     this.transacService.GetUpcomingTransaction(this.UID)
       .subscribe(res => {
@@ -154,12 +117,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       });
   }
 
+  PopulateTodaysTotalUnit() {
+    this.transactions
+    .forEach(element => {
+        this.add(this.distinctSchemetoUnitMap, element.schemeName, element.units_bought);
+    })
+    this.PopulateDistinctSchemeNAV(); 
+  }
+
   findAllTransactions() {
     this.transacService.GetAllTransactions(this.UID)
       .subscribe(res => {
         this.transactions = res.json();
         //console.log("transactions: "+JSON.stringify(this.transactions));
-        //this.CalculateTotalValuation();
+        this.PopulateTodaysTotalUnit();
       });
   }
 
@@ -170,44 +141,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         //console.log("transactions: "+JSON.stringify(this.transactions));        
       });
   }
-  
 
-  // generateChart() {
-  //   let weatherDates = [];
-  //   let temp_max = '100';
-  //   let temp_min = '0';
-  //   this.chart = new Chart('canvas', {
-  //     type: 'doughnut',
-  //     data: {
-  //       labels: weatherDates,
-  //       datasets: [
-  //         { 
-  //           data: temp_max,
-  //           backgroundColor: "#3cba9f",
-  //           fill: true
-  //         },
-  //         { 
-  //           data: temp_min,
-  //           backgroundColor: "#ffcc00",
-  //           fill: true
-  //         },
-  //       ]
-  //     },
-  //     options: {
-  //       legend: {
-  //         display: true
-  //       },
-  //       scales: {
-  //         xAxes: [{
-  //           display: false
-  //         }],
-  //         yAxes: [{
-  //           display: false
-  //         }],
-  //       }
-  //     }
-  //   });
-  // }
   generateChart() {
     console.log("calling chart");
     this.chart = this.amchartsService.makeChart( "chartdiv", {
@@ -246,6 +180,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (this.chart) {
       this.amchartsService.destroyChart(this.chart);
     }
+  }
+
+  private add(map, key, value) {
+    if(map.has(key)) {
+		  let amt = map.get(key);
+		  amt += value;
+      map.set(key, amt);
+      //console.log(key+" |---| "+amt);
+    }
+	  else {
+        map.set(key,value);
+        //console.log(key+" --- "+value);
+    }
+    //console.log(key+" --- "+value);
   }
   
 }
