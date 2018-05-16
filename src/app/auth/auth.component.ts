@@ -81,18 +81,14 @@ export class AuthComponent implements OnInit {
               (res) => {
                 console.log('Service success');
 
-                // let storeItem = {'user': 'souvik', 'isAdmin': 'Yes'}
-                // localStorage.setItem('UserDetails', JSON.stringify(storeItem));
-                // var retrievedObject = localStorage.getItem('UserDetails');
-                // console.log('retrievedObject: ', JSON.parse(retrievedObject));
-
                 //got the response. Now navigate
                 this.router.navigate(['dashboard']);              
               },
               (err) => {
                 console.log('Service failed' + JSON.stringify(err));
-                let errmsg = err.info.message;                
-                this.toaster.error(errmsg, ' OOPS !! ')                
+                let errmsg = err.info.message;
+                this.messageService.showError(errmsg, ' OOPS !! ', null );
+                //this.toaster.error(errmsg, ' OOPS !! ')                
               }
           );
           
@@ -120,7 +116,7 @@ export class AuthComponent implements OnInit {
           console.log("Is User Added :"+ this.isUseradded);
           let msg = ` You have successfuly added `+'<b>' + this.newUserName + '</b>' + `.<br>Please Login to continue`;
           console.log("MSG: "+msg);
-          this.toaster.success(msg, ' WELL DONE !! ', {enableHTML: true} );
+          this.messageService.showSuccess(msg, ' WELL DONE !! ', null );
           //got the response. Now navigate
           //this.router.navigate(['dashboard']);              
         },
@@ -147,15 +143,10 @@ export class AuthComponent implements OnInit {
     console.log("Forgot Password clicked");
     const dialogRef = this.dialog.open(ForgotPasswordComponent, {
       width: '500px',
-      disableClose: true
-      //data: {data: data }
+      disableClose: true    
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      // // let msg = ` An email has been sent to `+'<b>' + form.value.email + '</b>' +`with further instructions.<br>Please check your Inbox`; 
-      // let msg = ` An email has been sent `+`with further instructions.<br>Please check your Inbox`; 
-      // this.toaster.info(msg, ' INFO !! ', {enableHTML: true} );     
-    });
+    
   }
   
 
