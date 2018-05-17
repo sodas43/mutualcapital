@@ -97,10 +97,10 @@ function getAllTodaysTransactions() {
  
 //}
 //unitCount("HDFC Top 200 Fund - Dividend Option");
-getAllTodaysTransactions();
+//getAllTodaysTransactions();
 var rule = new schedule.RecurrenceRule();
-rule.hour=10;
-rule.minute=00;
+rule.hour=12;
+rule.minute=40;
 rule.second=0;
 
 var upDateNAVDaily = schedule.scheduleJob(rule, function() {
