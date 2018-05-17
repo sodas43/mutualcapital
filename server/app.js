@@ -78,8 +78,8 @@ app.use(flash());
 //GET NAV ========================
 
 var rule = new schedule.RecurrenceRule();
-rule.hour=12;
-rule.minute=25;
+rule.hour=07;
+rule.minute=30;
 rule.second=0;
 
 
