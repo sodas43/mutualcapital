@@ -246,7 +246,8 @@ router.get('/reset/password/:token', function(req, res, next) {
 	// // TWITTER --------------------------------
 
 	// 	// send to twitter to do the authentication
-		router.get('/auth/twitter', passport.authenticate('twitter', { scope : 'email' }));
+		//router.get('/auth/twitter', passport.authenticate('twitter', { scope : 'email' }));
+		router.get('/auth/twitter', passport.authenticate('twitter', {scope:['include_email=true']}));
 
 		// handle the callback after twitter has authenticated the user
 		router.get('/auth/twitter/callback',
