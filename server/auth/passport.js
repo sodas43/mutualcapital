@@ -215,9 +215,10 @@ var configAuth = require('./_config');
     // =========================================================================
     passport.use(new TwitterStrategy({
 
-        consumerKey     : configAuth.twitter.consumerKey,
-        consumerSecret  : configAuth.twitter.consumerSecret,
-        callbackURL     : configAuth.twitter.callbackURL,
+        consumerKey       : configAuth.twitter.consumerKey,
+        consumerSecret    : configAuth.twitter.consumerSecret,
+        callbackURL       : configAuth.twitter.callbackURL,
+        userProfileURL    : configAuth.twitter.userProfileURL,
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
     },
