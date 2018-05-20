@@ -32,7 +32,7 @@ export class AuthComponent implements OnInit {
   public isErr:boolean = false;
   public isUseradded:boolean = false;
   public newUserName ? : any;
-  
+  public loading = false;
   
   
   // user$:any[];
@@ -75,16 +75,19 @@ export class AuthComponent implements OnInit {
           email: form.value.email,
           password: form.value.password          
         };
-        
+
+        this.loading = true;        
         this.authService.Login(UserToVerify)
           .subscribe(
               (res) => {
+                this.loading = false;
                 console.log('Service success');
 
                 //got the response. Now navigate
                 this.router.navigate(['dashboard']);              
               },
               (err) => {
+                this.loading = false;
                 console.log('Service failed' + JSON.stringify(err));
                 let errmsg = err.info.message;
                 this.messageService.showError(errmsg, ' OOPS !! ', null );
@@ -105,9 +108,11 @@ export class AuthComponent implements OnInit {
       isAdmin: form.value.isAdmin ? form.value.isAdmin : false
     };
     
+    this.loading = true;
     this.authService.Signup(NewUser)
       .subscribe(
         (res) => {
+          this.loading = false;
           let Name = JSON.parse(JSON.stringify(res));
           this.newUserName = Name['user'];
           console.log(this.newUserName);      
@@ -121,6 +126,7 @@ export class AuthComponent implements OnInit {
           //this.router.navigate(['dashboard']);              
         },
         (err) => {
+          this.loading = false;
           let errmsg = err.info.message;
           //console.log("errmsg = "+ errmsg);
           this.toaster.error(errmsg, ' OOPS !! ');
@@ -143,6 +149,7 @@ export class AuthComponent implements OnInit {
     console.log("Forgot Password clicked");
     const dialogRef = this.dialog.open(ForgotPasswordComponent, {
       width: '500px',
+      height: '200px',
       disableClose: true    
     });
 

@@ -1,6 +1,6 @@
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { SchemeService } from './../../shared/services/scheme.service';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource, MatDialog} from '@angular/material';
 import  { Chart } from 'chart.js';
 import * as moment from 'moment';
@@ -22,6 +22,8 @@ export interface TransactionInterface {
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
+  @Input() show: boolean;
+
   chart: AmChart;
   upcomingTransactions: any;
   transactions: any;
@@ -37,6 +39,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   distinctSchemetoUnitMap = new Map();
   todaysTotalVal : any = 0;
 
+  public loading = false;
+
   constructor(
     private schemeServive: SchemeService,
     private amchartsService: AmChartsService,
@@ -49,11 +53,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.loading = true;
     this.findLimitedAllTransactions();
     this.findUpcomingTransactions();
     this.generateChart();
     this.findAllTransactions();
-    
+    this.loading = false;
   }
   
   GetUid() {

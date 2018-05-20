@@ -6,6 +6,8 @@
   <div mat-dialog-content fxLayout='column' 
   fxLayoutAlign="center center" 
   >
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  
     <!-- <div class="row"> -->
           <!-- <mat-form-field>
             <input matInput type="text" placeholder="Amount" [(ngModel)]="amount" class="input form-control amount" required>

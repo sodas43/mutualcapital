@@ -32,29 +32,31 @@ export class BnavbarComponent implements OnInit {
             //let data = JSON.parse(JSON.stringify(res.json()));
             console.log(data);
             if(data) {
-              if (data.user.twitter) {
-                console.log("Twitter Name: "+data.user.twitter.displayName);
-                console.log("Twitter user id: "+data.user._id);
-                this.user$ = data.user.twitter.displayName;
-                this.user_id = data.user._id;
-              }
-              if(data.user.google) {
-                console.log("Google Name: "+data.user.google.name);
-                console.log("Google user id: "+data.user._id);
-                this.user$ = data.user.google.name;
-                this.user_id = data.user._id;
-              }
-              //this.isUserAdmin$ = false;
-              
-              let storeItem = {'user': this.user$, 'isAdmin': false, 'uid': this.user_id};
-              this.authService.StoreToLocalStorage('UserDetails', storeItem);
-    
-              this.authService.getLoggedInName.emit(this.user$);
-              this.authService.getLoggedInNameIsAdmin.emit(false);
-    
-              console.log(JSON.stringify("loggedin user: "+this.user$));
-            }            
-          }          
+              if (data.user) {
+                if (data.user.twitter) {
+                  console.log("Twitter Name: "+data.user.twitter.displayName);
+                  console.log("Twitter user id: "+data.user._id);
+                  this.user$ = data.user.twitter.displayName;
+                  this.user_id = data.user._id;
+                }
+                else if(data.user.google) {
+                  console.log("Google Name: "+data.user.google.name);
+                  console.log("Google user id: "+data.user._id);
+                  this.user$ = data.user.google.name;
+                  this.user_id = data.user._id;
+                }
+                //this.isUserAdmin$ = false;
+                
+                let storeItem = {'user': this.user$, 'isAdmin': false, 'uid': this.user_id};
+                this.authService.StoreToLocalStorage('UserDetails', storeItem);
+      
+                this.authService.getLoggedInName.emit(this.user$);
+                this.authService.getLoggedInNameIsAdmin.emit(false);
+      
+                console.log(JSON.stringify("loggedin user: "+this.user$));
+              }              
+            }
+          }
       })
     }
 

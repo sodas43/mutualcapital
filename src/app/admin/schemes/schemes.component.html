@@ -4,6 +4,8 @@
     <div class="container">
         <div class="section text-center">
             <div class="row">
+                <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+                    
                 <div class="col-md-8 ml-auto mr-auto">
                     <button (click)="OnAddClick()" 
                         class="btn btn-round btn-fab btn-lg sticky"                    

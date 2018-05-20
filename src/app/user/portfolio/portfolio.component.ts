@@ -20,6 +20,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   totalPurchaseVal : any = 0;
   todaysTotalVal : any = 0;
   todaysTotalDiff : any = 0;
+  public loading = false;
 
   constructor(
     private transacService: TransService,
@@ -46,7 +47,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   }
 
   PopulateDistinctSchemeNAV() {
-    
+     
       this.transacService.GetDistinctSchemesFromAllTransactions(this.UID)
       .subscribe(res => {
         
@@ -69,43 +70,37 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
             },
             err => {
               console.log("Err : "+err);
+              this.loading = false;
             },
             () => {//when complete
               this.PopulateTodaysTotalValue(element);
             }
           )
         })           
-      })       
+      })
+      this.loading = false;       
   }
 
-  PopulateTodaysTotalValue(ele) {
-      console.log(ele);
-      console.log("===============================");
-      console.log(this.schemeNameMap.get(ele)+" -- "+ this.todaysCostMap.get(ele));
-      console.log("Multi : "+(this.schemeNameMap.get(ele) * this.todaysCostMap.get(ele)).toFixed(2));
-      this.todaysTotalVal += parseFloat((this.schemeNameMap.get(ele) * this.todaysCostMap.get(ele)).toFixed(2));
-      console.log(ele+"=> "+this.todaysTotalVal);
-      console.log("===============================");
-    //})
-    
-    //this.todaysTotalDiff = (this.todaysTotalVal - this.totalPurchaseVal).toFixed(2);
+  PopulateTodaysTotalValue(ele) {      
+      this.todaysTotalVal += parseFloat((this.schemeNameMap.get(ele) * this.todaysCostMap.get(ele)).toFixed(2));      
   }
 
   PopulateBuyCost() {
+    
     this.transactions
     .forEach(element => {
         this.add(this.buyCostMap, element.schemeName, element.amt);
     })
 
     this.buyCostMap.forEach((val: Number, key: string) => {
-      this.totalPurchaseVal += val;
-      //console.log(key+" --- "+val);
+      this.totalPurchaseVal += val;      
     })
-    //this.convertToArray(this.buyCostMap);
+    
 
   }
 
   PopulateTodaysTotalUnit() {
+    // this.loading = true;
     this.transactions
     .forEach(element => {
         this.add(this.todaysCostMap, element.schemeName, element.units_bought);
@@ -114,15 +109,21 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   }
   
   findAllTransactions() {
+    this.loading = true;
     this.transacService.GetAllTransactions(this.UID)
       .subscribe(res => {
+        // this.loading = false;
         this.transactions = res.json();
         //console.log("transactions: "+JSON.stringify(this.transactions));
         //this.CalculateTotalValuation();
         this.PopulateBuyCost();
         this.PopulateTodaysTotalUnit();
         
-      });
+      },
+    (err) => {
+      this.loading = false;
+      console.log("Err: "+err);
+    });
   }
   
   private add(map, key, value) {

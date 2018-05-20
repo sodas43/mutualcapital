@@ -14,7 +14,7 @@
                         <div class="profile" style="padding-bottom: 2em;">
                             
                             <div class="name">
-                                <h3 class="title">Souvik Das</h3>
+                                <h3 class="title">{{ UName }}</h3>
                             </div>
                         </div>
                     </div>
@@ -46,10 +46,10 @@
                             <dl class="horizontal clearfix profilePage">
                               <dt>Email</dt>
                               <dd>
-                                <span>jobs.souvik.das@gmail.com</span>                                    
+                                <span>{{ email }}</span>                                    
                               </dd>
                               <dt>Password</dt>
-                              <dd>******** <span>  <a href="javascript:void(0)" (click)="showPwdForm=!showPwdForm" class='edit-btn'> change </a></span>
+                              <dd>******** <span *ngIf="isLocal">  <a href="javascript:void(0)" (click)="showPwdForm=!showPwdForm" class='edit-btn'> update </a></span>
                                 <br><br>
                                 <div *ngIf='showPwdForm'class='editDiv'>
                                     <form style='font-size:.8em'
@@ -91,9 +91,9 @@
                             <p class="hint">All transaction &amp; account related alerts or communication regarding this facility of online investment account will be sent to the following email ID and/or mobile number.</p>
                             <dl class="horizontal clearfix profilePage">
                               <dt>Mobile</dt>
-                                  <dd>8981840133   <a data-reveal-id="mobile-edit" href="javascript:void(0)" (click)='showphoneForm=!showphoneForm' class='edit-btn'> change </a>
+                                  <dd>{{ mob }}   <a data-reveal-id="mobile-edit" href="javascript:void(0)" (click)="showPhoneForm=!showPhoneForm" class='edit-btn'> update </a>
                                     <br><br>
-                                    <div *ngIf='showphoneForm' class='editDiv'>
+                                    <div *ngIf='showPhoneForm' class='editDiv'>
                                         <form style='font-size:.8em'
                                         fxLayout='column' 
                                         fxLayoutAlign="left left" 
@@ -113,14 +113,14 @@
                                               style='font-size:.85em'                    
                                               [disabled]="f2.invalid"         
                                             >
-                                              <i class="material-icons">autorenew</i> Change Mobile 
+                                              <i class="material-icons">autorenew</i> Update Mobile 
                                             </button>
                                           </div>
                                           </form>
                                     </div>
                                   </dd>
                               <dt>Email</dt>
-                                  <dd>jobs.souvik.das@gmail.com
+                                  <dd>{{ email }}
                                   </dd>
                             </dl>                                
                           </div>
@@ -133,26 +133,124 @@
                             <dl class="horizontal clearfix profilePage">
                               <dt>PAN</dt>
                               <dd>
-                                <span>APFPD4777B</span>                                    
+                                <span>{{pan}}    <a data-reveal-id="pan-edit" href="javascript:void(0)" (click)="showPANForm=!showPANForm" class='edit-btn'> update </a></span>                                    
                               </dd>
                               <dd>
-                                <span class="notVerified">KYC verified</span> 
-                                <span class="verified">PAN verified</span> 
+                                <span [ngClass]="kycVerified ? 'verified' : 'notVerified'">
+                                  {{ kycVerified ? 'KYC verified' : 'KYC Not Verified' }}
+                                </span> 
+                                <span [ngClass]="panVerified ? 'verified' : 'notVerified'">
+                                    {{ panVerified ? 'PAN verified' : 'PAN Not Verified' }}
+                                </span>
+
+                                
+                                <br><br>
+                                <div *ngIf='showPANForm' class='editDiv'>
+                                    <form style='font-size:.8em'
+                                    fxLayout='column' 
+                                    fxLayoutAlign="left left" 
+                                    fxLayoutGap="10px"                                    
+                                    #f4="ngForm" (ngSubmit)="UpdatePAN(f4)">
+                                      <mat-form-field>                                          
+                                        <input 
+                                        matInput placeholder="Your PAN" 
+                                        ngModel name="pan" 
+                                        pan required #panInput="ngModel">
+                                        <mat-error *ngIf="panInput.hasError('required')">Field must not be empty.</mat-error>                                        
+                                      </mat-form-field>
+                                      <div style='float:inherit'>
+                                        <button type="submit" 
+                                          class="btn btn-sm btn-success"
+                                          style='font-size:.85em'                    
+                                          [disabled]="f4.invalid"         
+                                        >
+                                          <i class="material-icons">autorenew</i> Update PAN 
+                                        </button>
+                                      </div>
+                                      </form>
+                                    </div>
                               </dd>                              
                             </dl>
                             
                             <h3>Registered Bank Account details</h3>
-                            <dl class="horizontal profilePage">
+                            <dl class="horizontal clearfix profilePage">
                               <dt>Bank name</dt>
-                                <dd>HDFC BANK LTD</dd>
+                                <dd>{{ bankName }}</dd>
                               <dt>Account number</dt>
-                                <dd>07941610044445</dd>
+                                <dd>{{ acno }}</dd>
                               <dt>Branch / city</dt>
-                                <dd>HINJAWADI  PUNE/PUNE</dd>
+                                <dd>{{branch}} / {{city}}</dd>
                               <dt>IFSC</dt>
-                                <dd>HDFC0000794</dd>
+                                <dd>{{ IFSC }}</dd>
                               <dt>Payout Mechanism</dt>
-                              <dd>RTGS/NEFT TRANSFER</dd>
+                                <dd>{{ payout }}</dd>
+                                <dt></dt>
+                                  <dd><span><a href="javascript:void(0)" (click)="showBankForm=!showbankForm" class='edit-btn'> update </a></span>
+                                    <br><br>
+                                    <div *ngIf='showBankForm' class='editDiv'>
+                                        <form style='font-size:.8em'
+                                        fxLayout='column' 
+                                        fxLayoutAlign="left left" 
+                                        fxLayoutGap="10px"                                    
+                                        #f3="ngForm" (ngSubmit)="UpdateBank(f3)">
+                                          <mat-form-field>                                        
+                                            <input 
+                                            matInput placeholder="Bank Name" 
+                                            ngModel name="bankName" 
+                                            bankName required #bankNameInput="ngModel">
+                                            <mat-error *ngIf="bankNameInput.hasError('required')">Field must not be empty.</mat-error>                                        
+                                          </mat-form-field>
+                                          
+                                          <mat-form-field>                                        
+                                            <input 
+                                            matInput placeholder="Account number" 
+                                            ngModel name="acno" 
+                                            acno required #acnoInput="ngModel">
+                                            <mat-error *ngIf="acnoInput.hasError('required')">Field must not be empty.</mat-error>                                          
+                                          </mat-form-field>
+                                          <mat-form-field>                                        
+                                            <input 
+                                            matInput placeholder="Branch" 
+                                            ngModel name="branch" 
+                                            branch required #branchInput="ngModel">
+                                            <mat-error *ngIf="branchInput.hasError('required')">Field must not be empty.</mat-error>                                        
+                                          </mat-form-field>
+                                          
+                                          <mat-form-field>                                        
+                                            <input 
+                                            matInput placeholder="City" 
+                                            ngModel name="city" 
+                                            city required #cityInput="ngModel">
+                                            <mat-error *ngIf="cityInput.hasError('required')">Field must not be empty.</mat-error>                                          
+                                          </mat-form-field>
+                                          <mat-form-field>                                        
+                                            <input 
+                                            matInput placeholder="IFSC Code" 
+                                            ngModel name="IFSC" 
+                                            IFSC required #ifscInput="ngModel">
+                                            <mat-error *ngIf="ifscInput.hasError('required')">Field must not be empty.</mat-error>                                        
+                                          </mat-form-field>
+                                          
+                                          <mat-form-field>                                        
+                                            <input 
+                                            matInput placeholder="Payout Mechanism" 
+                                            ngModel name="payout" 
+                                            payout required #payoutInput="ngModel">
+                                            <mat-error *ngIf="payoutInput.hasError('required')">Field must not be empty.</mat-error>                                          
+                                          </mat-form-field>                                          
+                                          
+                                          <div style="float:right">
+                                              <button type="submit" 
+                                                class="btn btn-sm btn-success"
+                                                style='font-size:.85em'                    
+                                                [disabled]="f3.invalid"         
+                                              >
+                                                <i class="material-icons">autorenew</i> Update Bank Details 
+                                              </button> 
+                                          </div>                                      
+                                        </form>
+                                    </div>
+                                  </dd>
                               <hr>
                             </dl>
                             

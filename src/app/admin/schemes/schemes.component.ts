@@ -35,6 +35,7 @@ export class SchemesComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   Schemes: any[];
+  public loading = false;
 
   constructor(
     private schemeService: SchemeService,
@@ -53,13 +54,20 @@ export class SchemesComponent implements OnInit {
   }
 
   getAllSchemes() {
+    this.loading = true;
+
     this.schemeService.GetAllSchemes()
       .subscribe(res => {
+        this.loading = false;
           this.Schemes = res.json();
           this.dataSource.data = this.Schemes;
           
           //console.log(JSON.stringify(this.Schemes));
-      })
+      },
+    (err) => {
+      this.loading = false;
+      console.log("Err :"+err);
+    })
   }
 
   applySchemeFilter(filterValue: string) {

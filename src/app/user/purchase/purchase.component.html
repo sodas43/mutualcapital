@@ -2,11 +2,8 @@
 <div class="main main-raised">
     <div class="profile-content">
         <div class="container">
-
-            <div class="row">
-                Find the Best Schemes for our need !!
-                <a class="btn-info" routerLink="/products"> Click Here </a>
-            </div>
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+                       
             <div class="row">
                 <div class="col-md-12 ml-auto mr-auto">
                   <br><br>
@@ -61,13 +58,13 @@
                                     </datalist>         
                                 </mat-form-field>
                             </div>
-                            <div class="col-sm-4">
+                            <!-- <div class="col-sm-4">
                                 <button type="submit" 
                                 class="btn btn-round btn-sm btn-info"
                             >
                             <i class="fas fa-search"></i>
                             </button>
-                            </div>
+                            </div> -->
                         </div>
                         
                         <div class="row">
@@ -91,6 +88,24 @@
                         </form>  
                                                       
                     </div>
+                    <div *ngIf="payNow">
+                            
+                        <form #checkout="ngForm" (ngSubmit)="onPaymentSubmit(checkout)" class="checkout">
+                                <div class="bgCard">
+                                    <h6> CARD INFORMATION </h6>                    
+                                </div>
+                                <br>                           
+                            
+                            <div class="form-row">
+                                
+                                <div id="card-info" #cardInfo></div>
+                            
+                                <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-round">Pay <span class="price">{{ amount | currency: 'INR' }}</span></button>
+                        </form>
+                    </div>
                     
                 </div>
                 <div class="tab-pane text-center gallery" id="SIPDetails">
@@ -113,13 +128,13 @@
                                         </datalist>         
                                     </mat-form-field>
                                 </div>
-                                <div class="col-sm-4">
+                                <!-- <div class="col-sm-4">
                                     <button type="submit" 
                                     class="btn btn-round btn-sm btn-info"
                                 >
                                 <i class="fas fa-search"></i>
                                 </button>
-                                </div>
+                                </div> -->
                             </div>
                             
                                                        

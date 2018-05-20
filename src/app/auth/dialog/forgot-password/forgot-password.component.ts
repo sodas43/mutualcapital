@@ -13,6 +13,8 @@ import { MessageService } from '../../../shared/services/message.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
+  public loading = false;
+
   constructor(
     public dialogRef: MatDialogRef<ForgotPasswordComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -33,9 +35,11 @@ export class ForgotPasswordComponent implements OnInit {
       email: form.value.email
     }
 
+    this.loading = true;
     this.authService.forgotPassword(item)
           .subscribe(
               (res) => {
+                this.loading = false;
                 console.log('Service success');
                 let msg = ` An email has been sent to `+'<b>'+form.value.email+'</b>'+` with further instructions.<br>Please check your Inbox`; 
                 this.messageService.showInfo(msg, "SENT !!", null);
@@ -44,6 +48,7 @@ export class ForgotPasswordComponent implements OnInit {
                  
               },
               (err) => {
+                this.loading = false;
                 let errmsg = err.info;                
                 this.toaster.error(errmsg, ' SORRY !! ');
                 console.log('Service failed' + JSON.stringify(err));                

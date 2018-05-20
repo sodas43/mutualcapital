@@ -7,6 +7,7 @@ var User     = require('../models/user');
 var nodemailer = require('nodemailer');
 var configAuth = require('../auth/_config');
 var path = require('path');
+var UserProfileDBApi = require("./../DbApi/UserProfileDbApi");
 
 
 //module.exports = function(app, passport) {
@@ -117,6 +118,12 @@ router.get('/reset/password/:token', function(req, res, next) {
 						// setTimeout(() => {
 						// 	res.redirect(process.env.MAINURL+':'+process.env.PORT);
 						// }, 3000);
+					}
+					if (!user.validPassword(password)) {
+						console.log("in login 3");
+						req.flash('error', { msg: 'Password policy did not match. Please try again.' });
+						return res.redirect('back');
+						//return done(null, false, { message: ' Wrong password.' });
 					}
 					
 					user.local.password = user.generateHash(req.body.password);
@@ -281,6 +288,42 @@ router.get('/currentUser', function(req, res) {
   console.log("user : "+req.user);
 	return res.json({user: req.user});
 });
+
+// UPDATE MOBILE ===================
+//------------------------------------
+router.put('/updateMobile/:id', function(req, res) {
+	UserProfileDBApi.updateMobileByUserId(req.params.id, req.body, function(err, items) {
+		res.json(items);
+	});
+});
+
+router.put('/updatePAN/:id', function(req, res) {
+	UserProfileDBApi.updatePANByUserId(req.params.id, req.body, function(err, items) {
+		res.json(items);
+	});
+});
+
+router.put('/updatePwd/:id', function(req, res) {
+	UserProfileDBApi.updatePasswordByUserId(req.params.id, req.body, function(err, items) {
+		if(err) {
+			//return (JSON.parse(JSON.stringify(err)));
+			console.log("Err: "+err);
+		}
+		res.json(items);
+	});
+});
+router.put('/updateBank/:id', function(req, res) {
+	UserProfileDBApi.updateBankByUserId(req.params.id, req.body, function(err, items) {
+		res.json(items);
+	});
+});
+
+router.get('/getProfile/:id', function(req, res) {
+	UserProfileDBApi.getProfileByUserId(req.params.id, function(err, profile) {
+		res.json(profile);
+	});
+	
+})
 
 // ROUTE MIDDLEWARE TO ENSURE USER IS LOGGED IN ==============================
 // ----------------------------------------------

@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { TransService } from './../../shared/services/trans.service';
 import { PaymentService } from './../../shared/services/payment.service';
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
@@ -6,6 +7,7 @@ import { environment } from './../../../environments/environment';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 declare var Stripe;
+declare var elements;
 
 @Component({
   selector: 'app-payment',
@@ -22,7 +24,9 @@ export class PaymentComponent implements OnInit {
 	postCode: number;
 	cardToken: string;
 	userId: number;
-	
+  public loading = false;
+  
+  
   constructor(
     private paymentService: PaymentService,
     private transService: TransService,
@@ -36,6 +40,7 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit() {
     Stripe.setPublishableKey(environment.STRIPE_KEY);
+    elements = Stripe.elements();
     console.log("amt : "+JSON.stringify(this.data.amt));
     this.amount = this.data.amt;
   }

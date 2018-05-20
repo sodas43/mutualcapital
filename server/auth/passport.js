@@ -107,8 +107,18 @@ var configAuth = require('./_config');
                     newUser.local.password  = newUser.generateHash(req.body.password);
                     newUser.local.firstName = req.body.firstName;
                     newUser.local.lastName  = req.body.lastName;
-                    newUser.local.mobile    = req.body.mobile;
+                    newUser.mobile          = req.body.mobile;
                     newUser.local.isAdmin   = req.body.isAdmin;
+                    newUser.bank.name       = "";
+                    newUser.bank.acno       = "";
+                    newUser.bank.branch     = "";
+                    newUser.bank.city       = "";
+                    newUser.bank.IFSC       = "";
+                    newUser.bank.payout     = "";
+                    newUser.PAN.no          = "";
+                    newUser.PAN.verified    = false;
+                    newUser.PAN.KYCVerified = false;
+
                     
                     console.log("signup 6");
                     newUser.save(function(err) {
@@ -231,6 +241,17 @@ var configAuth = require('./_config');
                             user.twitter.token       = token;
                             user.twitter.username    = profile.username;
                             user.twitter.displayName = profile.displayName;
+                            user.twitter.email       = profile.emails[0].value; // pull the first email
+                            user.bank.name       = "";
+                            user.bank.acno       = "";
+                            user.bank.branch     = "";
+                            user.bank.city       = "";
+                            user.bank.IFSC       = "";
+                            user.bank.payout     = "";
+                            user.PAN.no          = "";
+                            user.PAN.verified    = false;
+                            user.PAN.KYCVerified = false;
+                            user.mobile          = "";
 
                             console.log("twitter 6");
                             user.save(function(err) {
@@ -251,6 +272,17 @@ var configAuth = require('./_config');
                         newUser.twitter.token       = token;
                         newUser.twitter.username    = profile.username;
                         newUser.twitter.displayName = profile.displayName;
+                        newUser.twitter.email       = profile.emails[0].value; // pull the first email
+                        newUser.bank.name       = "";
+                        newUser.bank.acno       = "";
+                        newUser.bank.branch     = "";
+                        newUser.bank.city       = "";
+                        newUser.bank.IFSC       = "";
+                        newUser.bank.payout     = "";
+                        newUser.PAN.no          = "";
+                        newUser.PAN.verified    = false;
+                        newUser.PAN.KYCVerified = false;
+                        newUser.mobile          = "";
 
                         newUser.save(function(err) {
                             if (err)
@@ -269,6 +301,17 @@ var configAuth = require('./_config');
                 user.twitter.token       = token;
                 user.twitter.username    = profile.username;
                 user.twitter.displayName = profile.displayName;
+                user.twitter.email       = profile.emails[0].value; // pull the first email
+                user.bank.name       = "";
+                user.bank.acno       = "";
+                user.bank.branch     = "";
+                user.bank.city       = "";
+                user.bank.IFSC       = "";
+                user.bank.payout     = "";
+                user.PAN.no          = "";
+                user.PAN.verified    = false;
+                user.PAN.KYCVerified = false;
+                user.mobile          = "";
 
                 user.save(function(err) {
                     if (err)
@@ -311,6 +354,16 @@ var configAuth = require('./_config');
                             user.google.token = token;
                             user.google.name  = profile.displayName;
                             user.google.email = profile.emails[0].value; // pull the first email
+                            user.bank.name       = "";
+                            user.bank.acno       = "";
+                            user.bank.branch     = "";
+                            user.bank.city       = "";
+                            user.bank.IFSC       = "";
+                            user.bank.payout     = "";
+                            user.PAN.no          = "";
+                            user.PAN.verified    = false;
+                            user.PAN.KYCVerified = false;
+                            user.mobile          = "";
 
                             user.save(function(err) {
                                 if (err)
@@ -327,6 +380,16 @@ var configAuth = require('./_config');
                         newUser.google.token = token;
                         newUser.google.name  = profile.displayName;
                         newUser.google.email = profile.emails[0].value; // pull the first email
+                        newUser.bank.name       = "";
+                        newUser.bank.acno       = "";
+                        newUser.bank.branch     = "";
+                        newUser.bank.city       = "";
+                        newUser.bank.IFSC       = "";
+                        newUser.bank.payout     = "";
+                        newUser.PAN.no          = "";
+                        newUser.PAN.verified    = false;
+                        newUser.PAN.KYCVerified = false;
+                        newUser.mobile          = "";
 
                         newUser.save(function(err) {
                             if (err)
@@ -344,6 +407,16 @@ var configAuth = require('./_config');
                 user.google.token = token;
                 user.google.name  = profile.displayName;
                 user.google.email = profile.emails[0].value; // pull the first email
+                user.bank.name       = "";
+                user.bank.acno       = "";
+                user.bank.branch     = "";
+                user.bank.city       = "";
+                user.bank.IFSC       = "";
+                user.bank.payout     = "";
+                user.PAN.no          = "";
+                user.PAN.verified    = false;
+                user.PAN.KYCVerified = false;
+                user.mobile          = "";
 
                 user.save(function(err) {
                     if (err)

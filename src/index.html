@@ -40,7 +40,11 @@
   <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
   <script src="/assets/js/material-kit.js?v=2.0.0"></script>
   <script src="https://checkout.stripe.com/checkout.js"></script>
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script type="text/javascript">
+    var Stripe = Stripe('pk_test_a7vMPlWQsfxYWuTAMBfDzKLe'); // use your test publishable key
+    var elements = Stripe.elements();
+  </script>
 
 
 

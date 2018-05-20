@@ -4,6 +4,8 @@
     <div class="container">
 	<div class="section text-center">
 	    <div class="row">
+            <ngx-loading [show]="loading"></ngx-loading>
+            
 		    <div class="col-md-12 ml-auto mr-auto">
 
 				<div class="bglabel">
@@ -42,7 +44,7 @@
                                                     <td class="date">{{ trans.startdate | date }}</td>
                                                     <td><span class="txnStatus trans_type">SIP</span></td>
                                                     <td class="scheme">{{ trans.schemeName }}</td>
-                                                    <td><i class="fas fa-rupee-sign"></i> {{ trans.amt }}</td>
+                                                    <td><span class="price">{{ trans.amt | currency: 'INR' }}</span></td>
                                                 </tr>													
                                         </tbody>
                                     </table>

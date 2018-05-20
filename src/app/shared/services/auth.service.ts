@@ -101,4 +101,62 @@ export class AuthService {
     return this.http.get(this.url+'/currentUser');
   }
 
+  GetProfile(uid) {
+    console.log("get email mobile service");
+    
+    return this.http.get(this.url+'/getProfile/'+uid);
+  }
+
+  UpdateMobile(uid, newMob) {
+    console.log("Update mobile service");
+    
+    return this.http.put(this.url+'/updateMobile/'+uid, newMob)
+    .map(res => {      
+      console.log(res.json());      
+    })
+    .catch ((err: Response) => {
+      console.log("Error: "+ JSON.stringify(err.json()));   
+      return Observable.throw(err.json());
+    })
+  }
+
+  UpdatePAN(uid, newPAN) {
+    console.log("Update mobile service");
+    
+    return this.http.put(this.url+'/updatePAN/'+uid, newPAN)
+    .map(res => {      
+      console.log(res.json());      
+    })
+    .catch ((err: Response) => {
+      console.log("Error: "+ JSON.stringify(err.json()));   
+      return Observable.throw(err.json());
+    })
+  }
+
+  UpdatePwd(uid, newPwd) {
+    console.log("Update pwd service");
+    
+    return this.http.put(this.url+'/updatePwd/'+uid, newPwd)
+    .map(res => {      
+      console.log(res.json());
+      return res.json();     
+    })
+    .catch ((err: Response) => {
+      console.log("Error: "+ JSON.stringify(err.json()));   
+      return Observable.throw(err.json());
+    })
+  }
+
+  UpdateBank(uid, newBank) {
+    console.log("Update bank service");
+    
+    return this.http.put(this.url+'/updateBank/'+uid, newBank)
+    .map(res => {      
+      console.log(res.json());      
+    })
+    .catch ((err: Response) => {
+      console.log("Error: "+ JSON.stringify(err.json()));   
+      return Observable.throw(err.json());
+    })
+  }
 }

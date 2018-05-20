@@ -10,7 +10,6 @@ var userSchema = mongoose.Schema({
         password             : String,
         firstName            : String,
         lastName             : String,
-        mobile               : String,
         isAdmin              : Boolean,
         resetPasswordToken   : String,
         resetPasswordExpires : Date       
@@ -25,6 +24,7 @@ var userSchema = mongoose.Schema({
         id           : String,
         token        : String,
         displayName  : String,
+        email        : String,
         username     : String
     },
     google           : {
@@ -32,8 +32,21 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String
-    }
-
+    },
+    PAN              : {
+        no           : String,
+        verified     : Boolean,
+        KYCVerified  : Boolean
+    },
+    bank             : {
+        name         : String,
+        acno         : Number,
+        branch       : String,
+        city         : String,
+        IFSC         : String,
+        payout       : String
+    },
+    mobile           : String
 },
 { collection: 'AuthUsers' }
 );

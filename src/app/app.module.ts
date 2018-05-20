@@ -44,6 +44,7 @@ import { PaymentService } from './shared/services/payment.service';
 import { AmChartsModule } from "@amcharts/amcharts3-angular";
 import { ToastrModule } from 'ngx-toastr';
 import { MessageService } from './shared/services/message.service';
+import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 
 
 @NgModule({
@@ -97,7 +98,16 @@ import { MessageService } from './shared/services/message.service';
       timeOut: 8000,
       positionClass: 'toast-top-full-width'
     }),
-    AmChartsModule
+    AmChartsModule,
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.wanderingCubes,
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+      backdropBorderRadius: '14px',
+      primaryColour: '#ffffff', 
+      secondaryColour: '#ffffff', 
+      tertiaryColour: '#ffffff',
+      fullScreenBackdrop: true
+    })
     
    
   ],
