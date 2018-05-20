@@ -218,7 +218,7 @@ var configAuth = require('./_config');
         consumerKey       : configAuth.twitter.consumerKey,
         consumerSecret    : configAuth.twitter.consumerSecret,
         callbackURL       : configAuth.twitter.callbackURL,
-        userProfileURL    : configAuth.twitter.userProfileURL,
+        // userProfileURL    : configAuth.twitter.userProfileURL,
         includeEmail      : true,
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
