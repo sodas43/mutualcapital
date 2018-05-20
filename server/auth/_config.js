@@ -6,8 +6,8 @@ var ids = {
 	},
 
 	'twitter' : {
-		'consumerKey' 		: 'DciQcpLVQKSw7mCn5DGQt0rkm',
-		'consumerSecret' 	: 'wcuYPLFTgz2OQjEliVKm5oCoq1ORRrzulS3prx5C7W0m1tP8Ha',
+		'consumerKey' 		: 'szzu6la94fkzMJ7bbjuhumTyy',
+		'consumerSecret' 	: '5dLjacN5j61rjdBBl7JYgIEynGYrsL5wjr8qPALeLnRTZSXkxF',
 		'callbackURL' 		: 'https://mutualcapital.herokuapp.com/auth/twitter/callback',
 		'userProfileURL'  : 'https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true'
 	},
