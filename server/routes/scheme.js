@@ -86,7 +86,7 @@ function getSchemeNAV() {
 }
 
 var rule = new schedule.RecurrenceRule();
-rule.hour=07;
+rule.hour=16;
 rule.minute=40;
 rule.second=0;
 
