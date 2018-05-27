@@ -18,7 +18,7 @@ import { MessageService } from '../../shared/services/message.service';
   templateUrl: './purchase.component.html',
   styleUrls: ['./purchase.component.css']
 })
-export class PurchaseComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PurchaseComponent implements OnInit, AfterViewInit {
   @ViewChild('cardInfo') cardInfo: ElementRef;
 
   card: any;
