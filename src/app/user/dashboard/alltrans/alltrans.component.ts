@@ -16,7 +16,7 @@ export class AlltransComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("trans: "+JSON.stringify(this.data));
+    // console.log("trans: "+JSON.stringify(this.data));
   }
 
 }

@@ -86,8 +86,8 @@ function getSchemeNAV() {
 }
 
 var rule = new schedule.RecurrenceRule();
-rule.hour=16;
-rule.minute=40;
+rule.hour=11;
+rule.minute=05;
 rule.second=0;
 
 var upDateNAVDaily = schedule.scheduleJob(rule, function() {
