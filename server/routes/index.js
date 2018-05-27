@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var passportTwitter = require('../auth/twitter');
+//var passportTwitter = require('../auth/twitter');
 var User = require('../models/user');
 
 var _clone = function(item) {
