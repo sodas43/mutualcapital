@@ -1,5 +1,4 @@
 import { PaymentService } from './../../shared/services/payment.service';
-import { PaymentComponent } from './../payment/payment.component';
 import { Router } from '@angular/router';
 import { TransService } from './../../shared/services/trans.service';
 import { SchemeService } from './../../shared/services/scheme.service';
@@ -9,7 +8,7 @@ import { MatDialog } from '@angular/material';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { environment } from '../../../environments/environment';
 import { MessageService } from '../../shared/services/message.service';
-import { setTimeout } from 'timers';
+// import { setTimeout } from 'timers';
 
 
 
