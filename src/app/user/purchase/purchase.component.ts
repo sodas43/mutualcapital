@@ -77,11 +77,11 @@ export class PurchaseComponent implements OnInit, AfterViewInit, OnDestroy {
     // this.card.addEventListener('change', this.cardHandler);
   }
 
-  ngOnDestroy() {
+  // ngOnDestroy() {
     
-    this.card.removeEventListener('change', this.cardHandler);
-    this.card.destroy();
-  }
+  //   this.card.removeEventListener('change', this.cardHandler);
+  //   this.card.destroy();
+  // }
 
   onChange({ error }) {
     if (error) {
