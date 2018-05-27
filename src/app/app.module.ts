@@ -11,7 +11,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app.routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BaseComponent } from './base/base.component';
+
 import { CategoryComponent } from './admin/category/category.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { BnavbarComponent } from './bnavbar/bnavbar.component';
@@ -31,20 +31,20 @@ import { SchemeService } from './shared/services/scheme.service';
 import { EditComponent } from './admin/schemes/dialog/edit/edit.component';
 import { DeleteComponent } from './admin/schemes/dialog/delete/delete.component';
 import { AddSchemeComponent } from './admin/schemes/dialog/add/add.component';
-import { UserComponent } from './admin/user/user.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { PortfolioComponent } from './user/portfolio/portfolio.component';
 import { PurchaseComponent } from './user/purchase/purchase.component';
-import { ProductsComponent } from './user/products/products.component';
+
 import { AdminGuardService } from './shared/services/admin-guard.service';
 import { TransService } from './shared/services/trans.service';
-import { PaymentComponent } from './user/payment/payment.component';
+
 import { PaymentService } from './shared/services/payment.service';
 //import { CustomToastOption } from './shared/components/custom-toast-option';
 import { AmChartsModule } from "@amcharts/amcharts3-angular";
 import { ToastrModule } from 'ngx-toastr';
 import { MessageService } from './shared/services/message.service';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
+import { AlltransComponent } from './user/dashboard/alltrans/alltrans.component';
 
 
 @NgModule({
@@ -52,7 +52,7 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
     AppComponent,
     WelcomeComponent,
     AuthComponent,
-    BaseComponent,
+    
     CategoryComponent,
     DashboardComponent,
     BnavbarComponent,
@@ -64,13 +64,11 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
     SchemesComponent,
     AddSchemeComponent,
     EditComponent,
-    DeleteComponent,
-    UserComponent,
+    DeleteComponent,    
     ProfileComponent,
     PortfolioComponent,
     PurchaseComponent,
-    ProductsComponent,
-    PaymentComponent   
+    AlltransComponent       
   ],
   entryComponents: [
     AddComponent,
@@ -80,7 +78,8 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
     AddSchemeComponent,
     EditComponent,
     DeleteComponent,
-    PaymentComponent
+    AlltransComponent
+    
   ],
   imports: [
     BrowserModule,

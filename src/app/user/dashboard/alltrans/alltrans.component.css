@@ -136,7 +136,7 @@ h2.txnStatus.upcoming {
 }
 .bglabel {
         align-content: center;
-        background-color: #3a539b;
+        background-color: #16A085;
         margin-top: 15px;
         margin-bottom: 10px;
         text-transform: uppercase;
@@ -259,4 +259,11 @@ h2.txnStatus.upcoming {
     background-color: #e2e2e2;
     border-radius: .4em;
     color: #000;
+  }
+
+  ::ng-deep .mat-dialog-content {
+    font-size: .65em;
+  }
+  ::ng-deep .mat-dialog {
+    width: 960px;
   }

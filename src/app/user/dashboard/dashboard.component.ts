@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { AmChartsService, AmChart } from '@amcharts/amcharts3-angular';
 import { TransService } from '../../shared/services/trans.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import { AlltransComponent } from './alltrans/alltrans.component';
 
 
 export interface TransactionInterface {
@@ -37,14 +38,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   schemeNameMap  =  new Map();
   distinctSchemetoUnitMap = new Map();
+  //todaysCostMap = new Map();
   todaysTotalVal : any = 0;
+  chartData? : any;
 
   public loading = false;
 
   constructor(
     private schemeServive: SchemeService,
     private amchartsService: AmChartsService,
-    private transacService: TransService
+    private transacService: TransService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {   
@@ -55,12 +59,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.loading = true;
     this.findLimitedAllTransactions();
-    this.findUpcomingTransactions();
-    this.generateChart();
+    this.findUpcomingTransactions();    
     this.findAllTransactions();
     this.loading = false;
   }
-  
+
   GetUid() {
     let User = JSON.parse(localStorage.getItem('UserDetails'));
     if ( User ) {
@@ -71,6 +74,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   PopulateDistinctSchemeNAV() {
+    this.loading = true;
     this.transacService.GetDistinctSchemesFromAllTransactions(this.UID)
     .subscribe(res => {
       
@@ -95,24 +99,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             console.log("Err : "+err);
           },
           () => {//when complete
-            this.PopulateTodaysTotalValue(ele);
+            //this.PopulateTodaysTotalValue(ele);
+            this.todaysTotalVal += parseFloat((this.schemeNameMap.get(ele) * this.distinctSchemetoUnitMap.get(ele)).toFixed(2));
+            //this.add(this.todaysCostMap, ele, this.todaysTotalVal);
           }
         )
       })
       
     })
-   
+   this.loading = false;
   }
 
-  PopulateTodaysTotalValue(ele) {
-    // console.log(ele);
-    // console.log("===============================");
-    // console.log(this.schemeNameMap.get(ele)+" -- "+ this.todaysCostMap.get(ele));
-    // console.log("Multi : "+(this.schemeNameMap.get(ele) * this.todaysCostMap.get(ele)).toFixed(2));
-    this.todaysTotalVal += parseFloat((this.schemeNameMap.get(ele) * this.distinctSchemetoUnitMap.get(ele)).toFixed(2));
-    // console.log(ele+"=> "+this.todaysTotalVal);
-    // console.log("==============================="); 
-}
+  // PopulateTodaysTotalValue(ele) {    
+  //   this.todaysTotalVal += parseFloat((this.schemeNameMap.get(ele) * this.distinctSchemetoUnitMap.get(ele)).toFixed(2));
+    
+  // }
  
   findUpcomingTransactions() {
     this.transacService.GetUpcomingTransaction(this.UID)
@@ -147,39 +148,39 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       });
   }
 
-  generateChart() {
-    console.log("calling chart");
-    this.chart = this.amchartsService.makeChart( "chartdiv", {
-      "type": "pie",
-      "theme": "light",
-      "dataProvider": [ {
-        "title": "HDFC Top 200",
-        "value": 4852
-      }, {
-        "title": "DSP Blackrok Tax Saver",
-        "value": 3200
-      },
-      {
-        "title": "HDFC Mid Cap Opportunities",
-        "value": 4423
-      },
-      {
-        "title": "HDFC small Cap",
-        "value": 2879
-      }
-      ],
-      "titleField": "title",
-      "valueField": "value",
-      "labelRadius": 5,
+  // generateChart() {
+  //   console.log("calling chart");
+  //   this.chart = this.amchartsService.makeChart( "chartdiv", {
+  //     "type": "pie",
+  //     "theme": "light",
+  //     "dataProvider": [ {
+  //       "title": "HDFC Top 200",
+  //       "value": 4852
+  //     }, {
+  //       "title": "DSP Blackrok Tax Saver",
+  //       "value": 3200
+  //     },
+  //     {
+  //       "title": "HDFC Mid Cap Opportunities",
+  //       "value": 4423
+  //     },
+  //     {
+  //       "title": "HDFC small Cap",
+  //       "value": 2879
+  //     }
+  //     ],
+  //     "titleField": "title",
+  //     "valueField": "value",
+  //     "labelRadius": 5,
     
-      "radius": "22%",
-      "innerRadius": "60%",
-      "labelText": "",
-      "export": {
-        "enabled": true
-      }
-    } );
-  }
+  //     "radius": "22%",
+  //     "innerRadius": "60%",
+  //     "labelText": "",
+  //     "export": {
+  //       "enabled": true
+  //     }
+  //   } );
+  // }
 
   ngOnDestroy() {
     if (this.chart) {
@@ -199,6 +200,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         //console.log(key+" --- "+value);
     }
     //console.log(key+" --- "+value);
+  }
+
+  ShowAllTransaction() {
+    let alltrans = this.transactions;
+    const dialogRef = this.dialog.open(AlltransComponent, {
+      // data: { id: id, categoryName: categoryName, categoryDescription: categoryDescription }
+      data: { alltrans }
+    });
   }
   
 }

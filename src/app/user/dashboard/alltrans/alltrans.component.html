@@ -1,0 +1,38 @@
+<div class="container mat-dialog-title">
+    <div class="bglabel">
+        <h5> ALL TRANSACTIONS </h5>                        
+    </div>
+    <br>
+    <div mat-dialog-content>
+      <table class="txnList invTxnList" id="transactionList" style="">
+        <colgroup>
+          <col width="12%" class="date">
+          <col width="15%">
+          <col width="12%">
+          <col width="34%">
+          <col width="12%">    
+          <col width="15%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Scheme</th>
+            <th>Amount</th>      
+            <th>Transaction No.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sip" *ngFor='let trans of data.alltrans'>
+            <td class="date">{{ trans.date_bought | date }}</td>
+            <td><span class="txnStatus completed">Processed</span></td>
+            <td class="txnType">{{ trans.trans_type }}</td>
+            <td>{{ trans.schemeName }}</td>
+            <td>{{ trans.amt | currency: 'INR' }}</td>
+            <td class="euin">{{ trans.trans_no }}</td>
+          </tr>
+        </tbody>  
+      </table>
+    </div>
+  </div>

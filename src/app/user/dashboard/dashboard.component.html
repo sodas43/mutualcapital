@@ -4,7 +4,7 @@
     <div class="container">
 	<div class="section text-center">
 	    <div class="row">
-            <ngx-loading [show]="loading"></ngx-loading>
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
             
 		    <div class="col-md-12 ml-auto mr-auto">
 
@@ -54,11 +54,11 @@
                                 <h2 class="txnStatus recent">Recent Transactions</h2>
                                 <table class="txnList" id="transactionList">
                                     <colgroup>
-                                        <col width="12%" class="date">
-                                        <col width="9%">
-                                        <col width="10%">
-                                        <col width="28%">
-                                        <col width="14%">
+                                        <col width="18%" class="date">
+                                        <col width="12%">
+                                        <col width="8%">
+                                        <col width="44%">
+                                        <col width="20%">
                                     </colgroup>
                                     <thead>
                                         <tr>
@@ -81,7 +81,7 @@
                                     <tfoot>
                                         <tr>
                                             <td colspan="5">
-                                                <a href="/account/investor-transactions?q2=ALL"
+                                                <a href="javascript:void(0)" (click)="ShowAllTransaction()"
                                                    style='color: #005eb8; text-decoration: none; line-height: inherit;'
                                                 >
                                                     See more recent transactions  »
@@ -96,18 +96,23 @@
                             
                         <aside id="seq2" class="col-md-4 col-lg-4 col-sm-12 columns">
                             <div id="RightPartial">
-                                <div id="valseq1" class="small-12 portValWeb">
+                                <div id="valseq1" class="col-sm-12 portValWeb">
                                     <section id="CurrentValuation_portValWeb" class="greyBox">
                                         <h2>Your Portfolio's Value<p><small>as on  {{ todaysDate | date }}</small></p></h2>
                                             <span class="value"><span class="price">{{ todaysTotalVal | currency: 'INR' }} </span></span>
                                     </section>
                                 </div>
                                 <section id="SchemeTypeAllocation" class="greyBox">
-                                    <h2>Fund Type Break-up</h2>
+                                    <h2>Schemes invested</h2>
                                     <!-- <canvas id="canvas" class="chartjs" width="30" height="30"
                                      style="display: block; width: 30px; height: 30px;">
-                                    </canvas> -->
-                                    <div id="chartdiv"></div>							
+                                    </canvas> 
+                                    <div id="chartdiv"></div> -->
+                                    <table class="SchemeTbl">
+                                        <tr *ngFor='let scheme of distinctSchemes' >
+                                            <td style="text-align: center"><small>{{ scheme }}</small></td>
+                                        </tr>
+                                    </table>
                                 </section>
                             </div>
                             

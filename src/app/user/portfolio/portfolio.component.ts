@@ -70,7 +70,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
             },
             err => {
               console.log("Err : "+err);
-              this.loading = false;
+              //this.loading = false;
             },
             () => {//when complete
               this.PopulateTodaysTotalValue(element);
@@ -78,7 +78,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
           )
         })           
       })
-      this.loading = false;       
+      //this.loading = false;       
   }
 
   PopulateTodaysTotalValue(ele) {      
@@ -109,7 +109,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   }
   
   findAllTransactions() {
-    this.loading = true;
+    //this.loading = true;
     this.transacService.GetAllTransactions(this.UID)
       .subscribe(res => {
         // this.loading = false;
@@ -121,7 +121,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
         
       },
     (err) => {
-      this.loading = false;
+      //this.loading = false;
       console.log("Err: "+err);
     });
   }
@@ -139,4 +139,6 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     }
     //console.log(key+" --- "+value);
   }
+
+  
 }
