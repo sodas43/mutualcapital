@@ -12,6 +12,7 @@ table.boldData {
   background-color: #eaf3fb;
   border-radius: .5em;
   padding: 1em;
+  font-size: 1.1em;
 }
 table {
   width: 100%;
@@ -45,7 +46,7 @@ table.holdingSummary thead tr th {
   padding-top: 0;
   vertical-align: middle;
   background: transparent;
-  font-size: 11px;
+  font-size: 11px;  
   color: #777;
   text-align: center;
   border-radius: 1em;
