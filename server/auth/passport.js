@@ -135,7 +135,7 @@ var configAuth = require('./_config');
     }));
 
     // =========================================================================
-    // FACEBOOK ================================================================
+    // FACEBOOK : TODO :: yet to implement =====================================
     // =========================================================================
     passport.use(new FacebookStrategy({
 
@@ -215,9 +215,11 @@ var configAuth = require('./_config');
     // =========================================================================
     passport.use(new TwitterStrategy({
 
-        consumerKey       : configAuth.twitter.consumerKey,
-        consumerSecret    : configAuth.twitter.consumerSecret,
-        callbackURL       : configAuth.twitter.callbackURL,
+        // consumerKey       : configAuth.twitter.consumerKey,
+        // consumerSecret    : configAuth.twitter.consumerSecret,
+        consumerKey       : process.env.TWITTER_CONSUMER_KEY,
+        consumerSecret    : process.env.TWITTER_CONSUMER_SECRET,
+        callbackURL       : process.env.TWITTER_CALLBACKURL,
         // userProfileURL    : configAuth.twitter.userProfileURL,
         includeEmail      : true,
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
@@ -331,9 +333,12 @@ var configAuth = require('./_config');
     // =========================================================================
     passport.use(new GoogleStrategy({
 
-        clientID        : configAuth.google.clientID,
-        clientSecret    : configAuth.google.clientSecret,
-        callbackURL     : configAuth.google.callbackURL,
+        // clientID        : configAuth.clientID,
+        // clientSecret    : configAuth.google.clientSecret,
+        // callbackURL     : configAuth.google.callbackURL,
+        clientID        : process.env.GOOGLE_CLIENT_ID,
+        clientSecret    : process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL     : process.env.GOOGLE_CALLBACKURL,
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
     },
