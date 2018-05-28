@@ -33,7 +33,7 @@
           <tr>
           <td><span class="price">{{ totalPurchaseVal | currency: 'INR' }}</span></td>              
           <td><span class="price">{{ todaysTotalVal | currency: 'INR' }}</span></td>
-          <td><span class="price"> <span [ngClass]="((todaysTotalVal - totalPurchaseVal) > 0) ? 'positive' : ( ((todaysTotalVal - totalPurchaseVal) == 0) ? 'neutral' : negative' )">{{ (todaysTotalVal - totalPurchaseVal) | currency: 'INR' }}</span></span></td>
+          <td><span class="price"> <span [ngClass]="( ((todaysTotalVal - totalPurchaseVal) > 0) ? 'positive' : ( ((todaysTotalVal - totalPurchaseVal) == 0) ? 'neutral' : negative') )">{{ (todaysTotalVal - totalPurchaseVal) | currency: 'INR' }}</span></span></td>
           <!-- <td><span> 12.77 %</span></td> -->
           </tr>
           </tbody>
