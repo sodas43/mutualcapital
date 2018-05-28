@@ -33,7 +33,7 @@
           <tr>
           <td><span class="price">{{ totalPurchaseVal | currency: 'INR' }}</span></td>              
           <td><span class="price">{{ todaysTotalVal | currency: 'INR' }}</span></td>
-          <td><span class="price"> <span [ngClass]="((todaysTotalVal - totalPurchaseVal) > 0) ? 'positive' : 'negative'">{{ (todaysTotalVal - totalPurchaseVal) | currency: 'INR' }}</span></span></td>
+          <td><span class="price"> <span [ngClass]="((todaysTotalVal - totalPurchaseVal) > 0) ? 'positive' : ( ((todaysTotalVal - totalPurchaseVal) == 0) ? 'neutral' : negative' )">{{ (todaysTotalVal - totalPurchaseVal) | currency: 'INR' }}</span></span></td>
           <!-- <td><span> 12.77 %</span></td> -->
           </tr>
           </tbody>
@@ -69,7 +69,7 @@
                       <td>                   
                         <span 
                           [ngClass]="((todaysCostMap.get(trans) * schemeNameMap.get(trans)) > buyCostMap.get(trans)) ? 
-                          'positive' : 'negative'">
+                          'positive' : ( ((todaysCostMap.get(trans) * schemeNameMap.get(trans)) == buyCostMap.get(trans)) ? 'neutral' : 'negative' )">
                             <i [ngClass]="((todaysCostMap.get(trans) * schemeNameMap.get(trans)) > buyCostMap.get(trans)) ? 
                               'fas fa-caret-up' : 'fas fa-caret-down'"></i>
                                 {{ ((todaysCostMap.get(trans) * schemeNameMap.get(trans)) - buyCostMap.get(trans)) | currency: 'INR' }}
