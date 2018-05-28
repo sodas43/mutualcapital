@@ -68,10 +68,10 @@
                       <td><span class="price">{{ (todaysCostMap.get(trans) * schemeNameMap.get(trans)) | currency: 'INR' }}</span></td>
                       <td>                   
                         <span 
-                          [ngClass]="((todaysCostMap.get(trans) * schemeNameMap.get(trans)) > buyCostMap.get(trans)) ? 
-                          'positive' : ( ((todaysCostMap.get(trans) * schemeNameMap.get(trans)) == buyCostMap.get(trans)) ? 'neutral' : 'negative' )">
-                            <i [ngClass]="((todaysCostMap.get(trans) * schemeNameMap.get(trans)) > buyCostMap.get(trans)) ? 
-                              'fas fa-caret-up' : 'fas fa-caret-down'"></i>
+                          [ngClass]="( ((todaysCostMap.get(trans) * schemeNameMap.get(trans)) > buyCostMap.get(trans)) ? 
+                          'positive' : ( ((todaysCostMap.get(trans) * schemeNameMap.get(trans)) == buyCostMap.get(trans)) ? 'neutral' : 'negative') )">
+                            <i [ngClass]="( ((todaysCostMap.get(trans) * schemeNameMap.get(trans)) > buyCostMap.get(trans)) ? 
+                              'fas fa-caret-up' : (((todaysCostMap.get(trans) * schemeNameMap.get(trans)) == buyCostMap.get(trans)) ? '' : 'fas fa-caret-down') )"></i>
                                 {{ ((todaysCostMap.get(trans) * schemeNameMap.get(trans)) - buyCostMap.get(trans)) | currency: 'INR' }}
                         </span> 
                         <!-- <span class="negative"><i class="fas fa-caret-down"></i> 9,750.82</span> -->
