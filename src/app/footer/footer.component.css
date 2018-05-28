@@ -1,0 +1,17 @@
+#footer {
+        padding:4rem 0 0 0;
+        background-color:#48484804;
+        background: linear-gradient(#48484804, #484848);
+        color:white;
+    }
+    
+    #footer a {
+        color:white;
+    }
+    #footer a:hover {
+        color:rgb(197, 191, 191);
+    }
+    
+    #footer .fab {
+        padding:0 5px;
+    }
